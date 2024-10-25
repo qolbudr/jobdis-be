@@ -1,5 +1,6 @@
 "use client";
 
+import { useGlobal } from "@/context/global";
 import {
   Anchor,
   Button,
@@ -13,6 +14,8 @@ import { useRouter } from "next/navigation";
 import { ChangeEvent, FormEvent, useState } from "react";
 
 export function LoginForm() {
+  const auth = useGlobal();
+
   type State = {
     email?: string,
     password?: string,
@@ -34,18 +37,17 @@ export function LoginForm() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     try {
       e.preventDefault();
-      // const user = await auth?.login({ username: form.username ?? '', password: form.password ?? '', remember: form.remember });
-      // if (user?.exception) throw user.exception.message;
-
+      await auth?.login({ email: state?.email ?? '', password: state?.password ?? '' });
       router.replace('/dashboard');
     } catch (e) {
+      console.log(e);
       // toast?.showToast({ text: e, type: ToastType.ERROR });
     }
   }
 
   return (
     <Card withBorder shadow="md" p={30} mt={30} radius="md">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={(e) => handleSubmit(e)}>
         <TextInput label="Email" name="email" onChange={handleChange} placeholder="test@example.com" required />
         <PasswordInput
           name="password" onChange={handleChange}

@@ -11,6 +11,7 @@ import { useDisclosure } from "@mantine/hooks";
 import { AdminHeader } from "@/components/Headers/AdminHeader";
 import { Navbar } from "@/components/Navbar/Navbar";
 import { navLinks } from "@/config";
+import { ProtectedPage } from "@/context/middleware/pageMiddleware";
 
 interface Props {
   children: React.ReactNode;
@@ -48,7 +49,7 @@ export default function DashboardLayout({ children }: Props) {
           }
         />
       </AppShell.Header>
-      <AppShell.Main bg={bg}>{children}</AppShell.Main>
+      <AppShell.Main bg={bg}><ProtectedPage>{children}</ProtectedPage></AppShell.Main>
       <AppShell.Footer>
         <Text w="full" size="sm" c="gray">
           CopyRight © 2023 Jotyy

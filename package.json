@@ -57,6 +57,7 @@
     "dayjs": "^1.11.11",
     "jsonwebtoken": "^9.0.2",
     "ky": "^1.4.0",
+    "lottie-jsx": "^1.6.1",
     "mantine-react-table": "2.0.0-alpha.5",
     "mysql2": "^3.11.3",
     "next": "14.1.0",

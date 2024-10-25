@@ -12,6 +12,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { spaceGrotesk } from "@/styles/fonts";
 import { theme } from "@/styles/theme";
 import { AppProvider } from "./provider";
+import { AuthState, GlobalProvider } from "@/context/global";
 
 export const metadata = {
   metadataBase: new URL("https://mantine-admin.vercel.app/"),
@@ -53,7 +54,11 @@ export default function RootLayout({
         <DirectionProvider>
           <MantineProvider theme={theme}>
             <ModalsProvider>
-              <AppProvider>{children}</AppProvider>
+              <GlobalProvider>
+                <AuthState>
+                  <AppProvider>{children}</AppProvider>
+                </AuthState>
+              </GlobalProvider>
               <Analytics />
             </ModalsProvider>
             <Notifications />

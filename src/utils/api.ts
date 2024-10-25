@@ -34,7 +34,7 @@ const generateURLQueryParam = ({ body, listKey }: { body: any, listKey?: string[
 export async function apiV1<Type>({url, path, method, headers, body, query} : ApiParameter<Type>): Promise<Type | undefined> {
     try 
     {
-        let newUrl = url ?? `${process.env.BASE_URL}${path}`
+        let newUrl = url ?? `${path}`
 
         if (query != null) newUrl += `?${generateURLQueryParam({body: query})}`;
 

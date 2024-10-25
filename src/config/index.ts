@@ -10,6 +10,5 @@ export const navLinks: NavItem[] = [
   { label: "Dashboard", icon: IconDashboard, link: "/dashboard" },
   { label: "User", icon: IconUser, link: "/user" },
   { label: "Job Application", icon: IconNews, link: "/job" },
-  { label: "Career Mapping", icon: IconNews, link: "/mapping" },
-  { label: "Logout", icon: IconLogout, link: "/logout" },
+  { label: "Career Mapping", icon: IconNews, link: "/mapping" }
 ];
