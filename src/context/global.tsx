@@ -1,8 +1,8 @@
 'use client';
 
+import { LoaderPage } from "@/components/Loader/LoaderPage";
 import { AuthRepository } from "@/repository/auth/auth_repository";
 import { User } from "@/types/user";
-import { Loader } from "@/components/Loader/Loader";
 import { Dispatch, ReactNode, SetStateAction, createContext, useContext, useEffect, useState } from "react";
 
 type GolbalContext = {
@@ -57,7 +57,7 @@ export const AuthState = ({ children }: { children: ReactNode }): JSX.Element =>
         setLoading(false);
     }, [])
 
-    if (isLoading) return <><Loader /></>
+    if (isLoading) return <><LoaderPage /></>
 
     return <>{children}</>;
 }

@@ -2,14 +2,14 @@
 
 import React, { ReactNode } from 'react';
 import { useGlobal } from '../global';
-import { Loader } from '@/components/Loader/Loader';
+import { LoaderPage } from '@/components/Loader/LoaderPage';
 
 export const ProtectedPage = ({ children }: { children: ReactNode }): JSX.Element => {
     const auth = useGlobal()
 
     if (auth?.user == null) {
         location.href = '/login';
-        return <Loader />;
+        return <LoaderPage />;
     }
 
     return <>{children}</>
@@ -20,7 +20,7 @@ export const ForceSignedIn = ({ children }: { children: ReactNode }): JSX.Elemen
 
     if (auth?.user != null) {
         location.href = '/dashboard';
-        return <Loader />;
+        return <LoaderPage />;
     }
 
     return <>{children}</>
@@ -30,9 +30,9 @@ export const RedirectDashboard = (): JSX.Element => {
     const auth = useGlobal()
 
     if (auth?.user != null) {
-        return <Loader />;
+        return <LoaderPage />;
     }
 
     location.href = '/login';
-    return <Loader />
+    return <LoaderPage />
 }

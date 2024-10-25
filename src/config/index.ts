@@ -8,7 +8,7 @@ import type { NavItem } from "@/types/nav-item";
 
 export const navLinks: NavItem[] = [
   { label: "Dashboard", icon: IconDashboard, link: "/dashboard" },
-  { label: "User", icon: IconUser, link: "/user" },
+  { label: "User", icon: IconUser, link: "dashboard/user" },
   { label: "Job Application", icon: IconNews, link: "/job" },
   { label: "Career Mapping", icon: IconNews, link: "/mapping" }
 ];
