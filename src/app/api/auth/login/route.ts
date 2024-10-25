@@ -1,13 +1,15 @@
 import { NextResponse } from 'next/server';
+import { PrismaClient } from '@prisma/client'
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const User  = require('@/database/models/user');
+
+const prisma = new PrismaClient()
 
 export async function POST(req: Request) {
   const { email, password } = await req.json();
 
   try {
-    const user = await User.findOne({ where: { email } });
+    const user = await prisma.users.findFirst({ where: { email: { contains: email } } });
 
     if (!user) {
       return NextResponse.json({ message: 'Invalid email or password' }, { status: 401 });
