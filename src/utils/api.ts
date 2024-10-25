@@ -1,3 +1,5 @@
+import { User } from "@/types/user";
+
 export enum ApiMethod {
     GET = "GET",
     POST = "POST",
@@ -31,26 +33,32 @@ const generateURLQueryParam = ({ body, listKey }: { body: any, listKey?: string[
     return query;
 }
 
-export async function apiV1<Type>({url, path, method, headers, body, query} : ApiParameter<Type>): Promise<Type | undefined> {
-    try 
-    {
+export async function apiV1<Type>({ url, path, method, headers, body, query }: ApiParameter<Type>): Promise<Type | undefined> {
+    try {
+        let token;
+        const local = localStorage.getItem('user');
+        
+        if (local) {
+            const user : User = JSON.parse(local!)
+            token = user.token;
+        }
+
         let newUrl = url ?? `${path}`
 
-        if (query != null) newUrl += `?${generateURLQueryParam({body: query})}`;
+        if (query != null) newUrl += `?${generateURLQueryParam({ body: query })}`;
 
         const response = await fetch(newUrl, {
             method: method,
-            headers: headers,
+            headers: { ...headers,  'Content-Type': 'application/json', 'Authorization': token ?? ''},
             body: JSON.stringify(body),
         })
 
-        if(response.status != 200) throw response.json();
+        if (response.status != 200) throw response.json();
 
         const json = await response.json() as (Type | undefined);
         return json;
-    } 
-    catch (e) 
-    {
+    }
+    catch (e) {
         throw (e);
     }
 }

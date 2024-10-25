@@ -48,7 +48,7 @@ export function LoginForm() {
   return (
     <Card withBorder shadow="md" p={30} mt={30} radius="md">
       <form onSubmit={(e) => handleSubmit(e)}>
-        <TextInput label="Email" name="email" onChange={handleChange} placeholder="test@example.com" required />
+        <TextInput label="Email" name="email" type="email" onChange={handleChange} placeholder="test@example.com" required />
         <PasswordInput
           name="password" onChange={handleChange}
           label="Password"

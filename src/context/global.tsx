@@ -24,8 +24,8 @@ export const GlobalProvider = ({ children }: { children: ReactNode }): JSX.Eleme
     const login = async ({ email, password }: { email: string, password: string }): Promise<User | undefined> => {
         try {
             const response = await AuthRepository.login({ email: email, password: password })
-
-            localStorage.setItem('user', JSON.stringify(response?.user));
+            
+            localStorage.setItem('user', JSON.stringify({...response?.user, token: response?.token}));
 
             setUser(response?.user);
             return response?.user;

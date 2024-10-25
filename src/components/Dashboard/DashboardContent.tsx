@@ -8,11 +8,12 @@ import { TransactionCard } from "./TransactionCard";
 import { WelcomeCard } from "./WelcomeCard";
 import { StatsGroup } from "../StatsGroup";
 import { mockData } from "../StatsGroup/mock";
+import { UsersTable } from "../Table/UsersTable";
 
 export function DashboardContent() {
   return (
     <Grid>
-      <GridCol span={{ sm: 12, md: 12, lg: 4 }}>
+      {/* <GridCol span={{ sm: 12, md: 12, lg: 4 }}>
         <ProfileCard />
       </GridCol>
       <GridCol span={{ sm: 12, md: 12, lg: 8 }}>
@@ -26,9 +27,9 @@ export function DashboardContent() {
       </GridCol>
       <GridCol span={{ sm: 12, md: 12, lg: 4 }}>
         <OverviewCard />
-      </GridCol>
+      </GridCol> */}
       <GridCol span={12}>
-        <TransactionCard />
+        <UsersTable />
       </GridCol>
     </Grid>
   );
