@@ -2,23 +2,10 @@
 
 import { Badge, Paper, Rating, Space, Title } from "@mantine/core";
 import { MantineReactTable, type MRT_ColumnDef } from "mantine-react-table";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
 import { User } from "@/types/user";
-import { UserRepository } from "@/repository/auth/user_repository";
 
-export function UsersTable() {
-    const [data, setData] = useState<Array<User>>([]);
-
-    useEffect(() => { getData() }, []);
-
-    const getData = async () => {
-        try {
-            const response = await UserRepository.getAll();
-            setData(response ?? []);
-        } catch (e) {
-        }
-    }
-
+export function UsersTable( {data} : {data: Array<User>}) {
     const columns = useMemo<MRT_ColumnDef<User>[]>(
         () => [
             {

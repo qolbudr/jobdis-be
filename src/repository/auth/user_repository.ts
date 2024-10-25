@@ -13,4 +13,16 @@ export class UserRepository {
             throw e;
         }
     }
+
+    static createUser = async (): Promise<User | undefined> => {
+        try {
+            const response = await apiV1<User>({
+                path: '/api/user', method: ApiMethod.POST,
+            })
+
+            return response;
+        } catch (e) {
+            throw e;
+        }
+    }
 }
