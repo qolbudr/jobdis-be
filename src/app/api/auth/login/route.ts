@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const User  = require('../../../../../models/user');
+const User  = require('@/database/models/user');
 
 export async function POST(req: Request) {
   const { email, password } = await req.json();
