@@ -1,11 +1,11 @@
 "use client";
 
-import { Badge, Paper, Rating, Space, Title } from "@mantine/core";
+import { Anchor, Badge, Group, Paper, Rating, Space, Title } from "@mantine/core";
 import { MantineReactTable, type MRT_ColumnDef } from "mantine-react-table";
 import { useMemo } from "react";
 import { User } from "@/types/user";
 
-export function UsersTable( {data} : {data: Array<User>}) {
+export function UsersTable({ data, deleteUser, editUser }: { data: Array<User>, deleteUser: (id: string) => void, editUser: (id: string) => void }) {
     const columns = useMemo<MRT_ColumnDef<User>[]>(
         () => [
             {
@@ -40,6 +40,20 @@ export function UsersTable( {data} : {data: Array<User>}) {
             {
                 accessorKey: "createdAt",
                 header: "Register",
+            },
+            {
+                accessorKey: "action",
+                header: "Action",
+                Cell: ({ cell, row }) => {
+                    return <Group>
+                        <Anchor onClick={() => editUser(row.original.id)} underline="never">
+                            Edit
+                        </Anchor>
+                        <Anchor onClick={() => deleteUser(row.original.id)} underline="never">
+                            Delete
+                        </Anchor>
+                    </Group>
+                },
             },
         ],
         [],

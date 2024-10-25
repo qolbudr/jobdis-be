@@ -1,8 +1,9 @@
 'use client';
 
 import { LoaderPage } from "@/components/Loader/LoaderPage";
-import { AuthRepository } from "@/repository/auth/auth_repository";
+import { LoginResponse } from "@/types/login-response";
 import { User } from "@/types/user";
+import { ApiMethod, apiV1 } from "@/utils/api";
 import { Dispatch, ReactNode, SetStateAction, createContext, useContext, useEffect, useState } from "react";
 
 type GolbalContext = {
@@ -23,10 +24,8 @@ export const GlobalProvider = ({ children }: { children: ReactNode }): JSX.Eleme
 
     const login = async ({ email, password }: { email: string, password: string }): Promise<User | undefined> => {
         try {
-            const response = await AuthRepository.login({ email: email, password: password })
-            
-            localStorage.setItem('user', JSON.stringify({...response?.user, token: response?.token}));
-
+            const response = await apiV1<LoginResponse>({ url: '/api/auth/login', method: ApiMethod.POST, body: { 'email': email, 'password': password } })
+            localStorage.setItem('user', JSON.stringify({ ...response?.user, token: response?.token }));
             setUser(response?.user);
             return response?.user;
         }

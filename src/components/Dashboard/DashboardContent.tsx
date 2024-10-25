@@ -29,7 +29,6 @@ export function DashboardContent() {
         <OverviewCard />
       </GridCol> */}
       <GridCol span={12}>
-        <UsersTable />
       </GridCol>
     </Grid>
   );
