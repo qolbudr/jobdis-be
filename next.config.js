@@ -3,5 +3,6 @@ module.exports = {
   swcMinify: true,
   experimental: {
     optimizePackageImports: ["@mantine/core", "@mantine/hooks"],
+    serverComponentsExternalPackages: ['sequelize'],
   },
 };

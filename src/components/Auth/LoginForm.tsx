@@ -23,12 +23,12 @@ export function LoginForm() {
         required
         mt="md"
       />
-      <Group mt="md" justify="space-between">
+      {/* <Group mt="md" justify="space-between">
         <Checkbox label="Remember me" />
         <Anchor size="sm" href="#">
           Forgot Password？
         </Anchor>
-      </Group>
+      </Group> */}
       <Button fullWidth mt="xl" onClick={() => router.push("/dashboard")}>
         Sign In
       </Button>

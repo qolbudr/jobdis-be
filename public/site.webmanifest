@@ -1,6 +1,6 @@
 {
-  "name": "Mantine Admin",
-  "short_name": "Mantine Admin",
+  "name": "JOBDIS",
+  "short_name": "An app to help disability find their dream job",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",

@@ -9,13 +9,10 @@ export default function AuthLayout({ children }: Props) {
   return (
     <Box className={classes.wrapper}>
       <Title order={1} fw="bolder">
-        Mantine Admin
+        JOBDIS
       </Title>
       <Text c="dimmed" size="sm" mt={5}>
-        Don&apos;t have an account?{" "}
-        <Anchor size="sm" href="/register">
-          Sign Up
-        </Anchor>
+        Silahkan login menggunakan akun anda
       </Text>
       <Box w={400}>{children}</Box>
     </Box>
