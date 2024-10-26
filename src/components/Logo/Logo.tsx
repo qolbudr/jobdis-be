@@ -16,9 +16,9 @@ export const Logo: React.FC<Props> = () => {
         className={classes.heading}
       >
         <Text fw="bolder" size="xl">
-          JOB
+          JOBDIS
           <Text component="span" fw="normal" className={classes.subheading}>
-            DIS
+            ADMIN
           </Text>
         </Text>
       </Link>

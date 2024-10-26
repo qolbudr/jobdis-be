@@ -9,10 +9,10 @@ const prisma = new PrismaClient();
 export async function GET(req: NextRequest) {
     try {
         // Apply the authentication middleware
-        // const authResponse = await authMiddleware(req)
-        // if (authResponse.status !== 200) {
-        //     return authResponse
-        // }
+        const authResponse = await authMiddleware(req)
+        if (authResponse.status !== 200) {
+            return authResponse
+        }
 
         const { searchParams } = new URL(req.url);
         const filter = searchParams.get("filter");

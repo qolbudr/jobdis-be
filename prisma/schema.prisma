@@ -39,6 +39,7 @@ model JobVacancy {
   division    String?
   work_type   WorkType
   salary      Int?
+  excerpt     String?    @db.LongText
   description String    @db.LongText
   link        String
   postedBy    Users     @relation(fields: [userId], references: [id])

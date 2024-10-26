@@ -8,6 +8,9 @@ const bcrypt = require('bcrypt')
 
 async function main() {
     const argument = process.argv.slice(2)[0];
+     await prisma.$queryRaw`SET FOREIGN_KEY_CHECKS = 0`;
+    await prisma.$queryRaw`TRUNCATE Users`;
+    await prisma.$queryRaw`TRUNCATE JobVacancy`;
 
     if (argument == "users") {
         const password = await bcrypt.hash('11223344', 8);
