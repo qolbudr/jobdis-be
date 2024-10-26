@@ -8,9 +8,11 @@ import { ApiMethod, apiV1 } from "@/utils/api";
 import { Anchor, Breadcrumbs, Button, Grid, GridCol, Group } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import { JobVacancy } from "@prisma/client";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const JobPage = () => {
+    const router = useRouter();
     const [data, setData] = useState<Array<JobVacancy>>([]);
 
     useEffect(() => {
@@ -49,7 +51,7 @@ const JobPage = () => {
                 </GridCol>
                 <GridCol className="text-right" span={12}>
                     <Group>
-                        <Button>Add Job Vacancy</Button>
+                        <Button onClick={() => router.push('/dashboard/job/add')}>Add Job Vacancy</Button>
                     </Group>
                 </GridCol>
                 <GridCol span={12}>

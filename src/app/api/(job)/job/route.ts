@@ -15,10 +15,11 @@ export async function POST(req: NextRequest) {
             return authResponse
         }
 
-        const password = await bcrypt.hash(data.password, 8);
-
         const job = await prisma.jobVacancy.create({
-            data: data
+            data: {
+                ...data,
+                salary: data.salary ? parseInt(data.salary) : null
+            }
         });
 
         return NextResponse.json(job)
