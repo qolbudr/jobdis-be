@@ -14,9 +14,14 @@ export async function POST(req: NextRequest) {
         if (authResponse.status !== 200) {
             return authResponse
         }
+
+        const password = await bcrypt.hash(data.password, 8);
         
         const user = await prisma.users.create({
-            data: data,
+            data: {
+                ...data,
+                password: password,
+            }
         });
 
         return NextResponse.json(user)
