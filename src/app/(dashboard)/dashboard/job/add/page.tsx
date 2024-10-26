@@ -34,7 +34,7 @@ const JobPageAdd = () => {
         try {
             e.preventDefault();
             await apiV1({ method: ApiMethod.POST, path: '/api/job', body: { ...data, description: description, work_type: workType, userId: global?.user?.id } })
-            router.replace('/dashboard/job')
+            router.replace('/dashboard/job?status=success')
         } catch (e) {
             const exception = e as Exception;
             notifications.show({

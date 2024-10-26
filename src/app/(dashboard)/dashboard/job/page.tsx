@@ -8,17 +8,26 @@ import { ApiMethod, apiV1 } from "@/utils/api";
 import { Anchor, Breadcrumbs, Button, Grid, GridCol, Group, Modal, Text } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import { JobVacancy } from "@prisma/client";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const JobPage = () => {
     const router = useRouter();
+    const searchParams = useSearchParams();
     const [data, setData] = useState<Array<JobVacancy>>([]);
     const [confirmDeleteOpen, openConfirmDelete] = useState(false);
     const [selectedId, setId] = useState<number | undefined>();
 
     useEffect(() => {
         getData();
+        if(searchParams.get("status") == "success") {
+            notifications.show({
+                color: 'green',
+                title: "Success",
+                message: "Data has been successfully updated",
+                position: 'top-center'
+            })
+        }
     }, [])
 
     const getData = async () => {
@@ -68,6 +77,11 @@ const JobPage = () => {
         router.push('/dashboard/job/view/' + id);
     }
 
+    const actionEdit = (id: number) => {
+        setId(id);
+        router.push('/dashboard/job/edit/' + id);
+    }
+
     return <>
         <PageContainer title="Job Vacancy">
             <Modal opened={confirmDeleteOpen} onClose={() => openConfirmDelete(false)} title="Delete User" centered>
@@ -95,7 +109,7 @@ const JobPage = () => {
                     </Group>
                 </GridCol>
                 <GridCol span={12}>
-                    <JobVacancyTable data={data} viewJob={actionView} deleteJob={actionDelete} editJob={(e) => { }} />
+                    <JobVacancyTable data={data} viewJob={actionView} deleteJob={actionDelete} editJob={actionEdit} />
                 </GridCol>
             </Grid>
         </PageContainer>

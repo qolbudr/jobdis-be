@@ -28,7 +28,7 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
         }
 
         const job = await prisma.jobVacancy.findFirst({ where: { id: parseInt(params.id) }, include: { postedBy: true } })
-        if(job == null) throw { message: `Job with id ${params.id} not found`}
+        if (job == null) throw { message: `Job with id ${params.id} not found` }
         return NextResponse.json(job)
     } catch (error) {
         return NextResponse.json({ titile: 'Error', message: 'Internal server error', error }, { status: 500 });
@@ -43,7 +43,15 @@ export async function POST(req: NextRequest, { params }: { params: { id: string 
         }
 
         const data = await req.json();
-        const job = await prisma.jobVacancy.update({ where: { id: parseInt(params.id) }, data: data })
+        const job = await prisma.jobVacancy.update({
+            where: { id: parseInt(params.id) }, data: {
+                ...data,
+                id: undefined,
+                userId: undefined,
+                postedBy: undefined,
+                salary: data.salary ? parseInt(data.salary) : null
+            }
+        })
         return NextResponse.json(job)
     } catch (error) {
         return NextResponse.json({ titile: 'Error', message: 'Internal server error', error }, { status: 500 });
