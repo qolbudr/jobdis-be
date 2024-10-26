@@ -15,14 +15,16 @@ datasource db {
 }
 
 model Users {
-  id            Int           @id @default(autoincrement())
-  email         String        @unique
-  name          String?
-  password      String
-  role          Role
-  jobVacancies  JobVacancy[]
-  createdAt     DateTime      @default(now())
-  updatedAt     DateTime      @default(now())
+  id                Int           @id @default(autoincrement())
+  email             String        @unique
+  name              String?
+  password          String
+  role              Role
+  jobVacancies      JobVacancy[]
+  userInChat        PaymentChat[] @relation("UserInChat")
+  consultantInChat  PaymentChat[] @relation("ConsultantInChat")
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @default(now())
 }
 
 enum Role {
@@ -53,4 +55,19 @@ enum WorkType {
   fulltime
   parttime
   internship
+}
+
+model PaymentChat {
+  id              Int       @id @default(autoincrement())
+  roomId          String
+  user            Users     @relation("UserInChat", fields: [userId], references: [id])
+  userId          Int
+  consultant      Users     @relation("ConsultantInChat", fields: [consultantId], references: [id])
+  consultantId    Int
+  elapsedDuration Int       @default(0)
+  duration        Int       
+  paymentProof    String
+  paid            Boolean   @default(false)      
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @default(now())
 }
