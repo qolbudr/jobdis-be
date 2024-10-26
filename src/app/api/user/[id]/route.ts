@@ -12,9 +12,10 @@ export async function DELETE(req: NextRequest, { params }: { params: { id: strin
         if (authResponse.status !== 200) {
             return authResponse
         }
+        
         const user = await prisma.users.delete({ where: { id: parseInt(params.id) } })
         return NextResponse.json(user)
     } catch (error) {
-        return NextResponse.json({ message: 'Internal server error', error }, { status: 500 });
+        return NextResponse.json({ titile: 'Error', message: 'Internal server error', error }, { status: 500 });
     }
 }

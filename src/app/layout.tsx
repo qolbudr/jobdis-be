@@ -1,5 +1,6 @@
 import "@mantine/core/styles.css";
 import "mantine-react-table/styles.css";
+import '@mantine/notifications/styles.css';
 
 import {
   ColorSchemeScript,
@@ -61,7 +62,9 @@ export default function RootLayout({
               </GlobalProvider>
               <Analytics />
             </ModalsProvider>
-            <Notifications />
+            {/* <div style={{ 'position': "absolute", width: '30vw', height: '20vw' }}> */}
+              <Notifications />
+            {/* </div> */}
           </MantineProvider>
         </DirectionProvider>
       </body>

@@ -2,11 +2,13 @@
 
 import { PageContainer } from "@/components/PageContainer/PageContainer";
 import { UsersTable } from "@/components/Table/UsersTable";
+import { Exception } from "@/types/exception";
 import { User } from "@/types/user";
 import { ApiMethod, apiV1 } from "@/utils/api";
 import { Button, Card, ComboboxItem, Grid, GridCol, Group, Modal, PasswordInput, Select, Text, TextInput } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { modals } from "@mantine/modals";
+import { notifications } from "@mantine/notifications";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 
 const UserPage = () => {
@@ -34,7 +36,14 @@ const UserPage = () => {
       const user = await apiV1<Array<User>>({ path: '/api/users', method: ApiMethod.GET });
       setState({ ...state, data: user ?? [] })
     } catch (e) {
+      const exception = e as Exception;
 
+      notifications.show({
+        color: 'red',
+        title: exception.title,
+        message: JSON.stringify(exception.error) ?? exception.message,
+        position: 'top-center'
+      })
     }
   }
 
@@ -61,8 +70,20 @@ const UserPage = () => {
       await apiV1<User>({ path: '/api/user', method: ApiMethod.POST, body: state.user })
       openAddModal(false);
       getData();
+      notifications.show({
+        color: 'green',
+        title: "Success",
+        message: "User has been created",
+        position: 'top-center'
+      })
     } catch (e) {
-      console.log(e);
+      const exception = e as Exception;
+      notifications.show({
+        color: 'red',
+        title: exception.title,
+        message: JSON.stringify(exception.error) ?? exception.message,
+        position: 'top-center'
+      })
     }
   }
 
@@ -76,8 +97,20 @@ const UserPage = () => {
       const user = await apiV1<User>({ path: `/api/user/${selectedId}`, method: ApiMethod.DELETE });
       openConfirmDelete(false)
       getData();
+      notifications.show({
+        color: 'green',
+        title: "Success",
+        message: "User has been deleted",
+        position: 'top-center'
+      })
     } catch (e) {
-
+      const exception = e as Exception;
+      notifications.show({
+        color: 'red',
+        title: exception.title,
+        message: JSON.stringify(exception.error) ?? exception.message,
+        position: 'top-center'
+      })
     }
   }
 

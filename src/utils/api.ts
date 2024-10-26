@@ -1,3 +1,4 @@
+import { Exception } from "@/types/exception";
 import { User } from "@/types/user";
 
 export enum ApiMethod {
@@ -37,9 +38,9 @@ export async function apiV1<Type>({ url, path, method, headers, body, query }: A
     try {
         let token;
         const local = localStorage.getItem('user');
-        
+
         if (local) {
-            const user : User = JSON.parse(local!)
+            const user: User = JSON.parse(local!)
             token = user.token;
         }
 
@@ -49,16 +50,16 @@ export async function apiV1<Type>({ url, path, method, headers, body, query }: A
 
         const response = await fetch(newUrl, {
             method: method,
-            headers: { ...headers,  'Content-Type': 'application/json', 'Authorization': token ?? ''},
+            headers: { ...headers, 'Content-Type': 'application/json', 'Authorization': token ?? '' },
             body: JSON.stringify(body),
         })
 
-        if (response.status != 200) throw response.json();
+        if (response.status != 200) throw await response.json();
 
         const json = await response.json() as (Type | undefined);
         return json;
     }
     catch (e) {
-        throw (e);
+        throw (e as Exception);
     }
 }

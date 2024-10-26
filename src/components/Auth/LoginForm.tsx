@@ -1,6 +1,7 @@
 "use client";
 
 import { useGlobal } from "@/context/global";
+import { Exception } from "@/types/exception";
 import {
   Anchor,
   Button,
@@ -10,6 +11,7 @@ import {
   PasswordInput,
   TextInput,
 } from "@mantine/core";
+import { notifications } from "@mantine/notifications";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, FormEvent, useState } from "react";
 
@@ -40,8 +42,14 @@ export function LoginForm() {
       await auth?.login({ email: state?.email ?? '', password: state?.password ?? '' });
       router.replace('/dashboard');
     } catch (e) {
-      console.log(e);
-      // toast?.showToast({ text: e, type: ToastType.ERROR });
+      const exception = e as Exception;
+      
+      notifications.show({
+        color: 'red',
+        title: exception.title,
+        message: exception.message,
+        position: 'top-center'
+      })
     }
   }
 

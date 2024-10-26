@@ -16,12 +16,10 @@ export async function GET(req: NextRequest) {
 
         const { searchParams } = new URL(req.url);
         const filter = searchParams.get("filter");
-        
-
 
         const user = await prisma.users.findMany();
         return NextResponse.json(user)
     } catch (error) {
-        return NextResponse.json({ message: 'Internal server error', error }, { status: 500 });
+        return NextResponse.json({ title: 'Error', message: 'Internal server error', error }, { status: 500 });
     }
 }

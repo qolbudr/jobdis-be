@@ -1,6 +1,7 @@
 'use client';
 
 import { LoaderPage } from "@/components/Loader/LoaderPage";
+import { Exception } from "@/types/exception";
 import { LoginResponse } from "@/types/login-response";
 import { User } from "@/types/user";
 import { ApiMethod, apiV1 } from "@/utils/api";
@@ -30,7 +31,8 @@ export const GlobalProvider = ({ children }: { children: ReactNode }): JSX.Eleme
             return response?.user;
         }
         catch (e) {
-            throw e;
+            console.log(e);
+            throw e as Exception;
         }
     }
 

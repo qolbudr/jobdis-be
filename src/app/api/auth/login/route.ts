@@ -12,13 +12,13 @@ export async function POST(req: Request) {
     const user = await prisma.users.findFirst({ where: { email: { contains: email } } });
 
     if (!user) {
-      return NextResponse.json({ message: 'Invalid email or password' }, { status: 401 });
+      return NextResponse.json({ title: 'Failed to login', message: 'Invalid email or password', code: 401 }, { status: 401 });
     }
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
 
     if (!isPasswordValid) {
-      return NextResponse.json({ message: 'Invalid email or password' }, { status: 401 });
+      return NextResponse.json({ title: 'Failed to login', message: 'Invalid email or password', code: 401 }, { status: 401 });
     }
 
     // Generate a JWT token
@@ -26,6 +26,6 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ message: 'Login successful', user: user, token }, { status: 200 });
   } catch (error) {
-    return NextResponse.json({ message: 'Internal server error', error }, { status: 500 });
+    return NextResponse.json({ title: 'Failed to login', message: 'Internal server error', code: 500 }, { status: 500 });
   }
 }
