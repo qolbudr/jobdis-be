@@ -5,7 +5,7 @@ import { UsersTable } from "@/components/Table/UsersTable";
 import { Exception } from "@/types/exception";
 import { User } from "@/types/user";
 import { ApiMethod, apiV1 } from "@/utils/api";
-import { Button, Card, ComboboxItem, Grid, GridCol, Group, Modal, PasswordInput, Select, Text, TextInput } from "@mantine/core";
+import { Anchor, Breadcrumbs, Button, Card, ComboboxItem, Grid, GridCol, Group, Modal, PasswordInput, Select, Text, TextInput } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { modals } from "@mantine/modals";
 import { notifications } from "@mantine/notifications";
@@ -76,7 +76,7 @@ const UserPage = () => {
   const handleSubmitEdit = async (e: FormEvent<HTMLFormElement>) => {
     try {
       e.preventDefault();
-      await apiV1<User>({ path: `/api/user/${selectedId}`, method: ApiMethod.POST, body: userDetail});
+      await apiV1<User>({ path: `/api/user/${selectedId}`, method: ApiMethod.POST, body: userDetail });
       openEditModal(false);
       getData();
       notifications.show({
@@ -189,6 +189,16 @@ const UserPage = () => {
       </Modal>
 
       <Grid>
+        <GridCol className="text-lefe" span={12}>
+          <Breadcrumbs>
+            <Anchor href="/dashboard">
+              Dashboard
+            </Anchor>
+            <Anchor href="/dashboard/user">
+              Users
+            </Anchor>
+          </Breadcrumbs>
+        </GridCol>
         <GridCol className="text-right" span={12}>
           <Group>
             <Button onClick={() => openAddModal(true)}>Add User</Button>

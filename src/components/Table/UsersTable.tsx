@@ -61,7 +61,7 @@ export function UsersTable({ data, deleteUser, editUser }: { data: Array<User>, 
 
     return (
         <Paper withBorder radius="md" p="md">
-            <Title order={5}>Users</Title>
+            <Title order={5}>Users Data</Title>
             <Space h="md" />
             <MantineReactTable
                 columns={columns}
