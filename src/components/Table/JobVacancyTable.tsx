@@ -7,7 +7,7 @@ import { User } from "@/types/user";
 import { JobVacancy } from "@prisma/client";
 import { formatCurrencyInIDR } from "@/utils/utils";
 
-export function JobVacancyTable({ data, deleteJob, editJob }: { data: Array<JobVacancy>, deleteJob: (id: number) => void, editJob: (id: number) => void }) {
+export function JobVacancyTable({ data, deleteJob, editJob, viewJob }: { data: Array<JobVacancy>, deleteJob: (id: number) => void, viewJob: (id: number) => void, editJob: (id: number) => void }) {
     const columns = useMemo<MRT_ColumnDef<JobVacancy>[]>(
         () => [
             {
@@ -55,7 +55,7 @@ export function JobVacancyTable({ data, deleteJob, editJob }: { data: Array<JobV
                 header: "Action",
                 Cell: ({ cell, row }) => {
                     return <Group>
-                        <Anchor onClick={() => editJob(row.original.id)} underline="never">
+                        <Anchor onClick={() => viewJob(row.original.id)} underline="never">
                             View
                         </Anchor>
                         <Anchor onClick={() => editJob(row.original.id)} underline="never">

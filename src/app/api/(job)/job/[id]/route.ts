@@ -27,7 +27,8 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
             return authResponse
         }
 
-        const job = await prisma.jobVacancy.findFirst({ where: { id: parseInt(params.id) } })
+        const job = await prisma.jobVacancy.findFirst({ where: { id: parseInt(params.id) }, include: { postedBy: true } })
+        if(job == null) throw { message: `Job with id ${params.id} not found`}
         return NextResponse.json(job)
     } catch (error) {
         return NextResponse.json({ titile: 'Error', message: 'Internal server error', error }, { status: 500 });
