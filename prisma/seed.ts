@@ -1,57 +1,37 @@
 // prisma/seed.ts
 import { PrismaClient } from '@prisma/client'
+const userData = require('./data/user.json');
+const jobData = require('./data/job.json');
 
 const prisma = new PrismaClient()
 const bcrypt = require('bcrypt')
 
 async function main() {
-    // Example seeding for a `User` model
-    const password = await bcrypt.hash('11223344', 8);
+    const argument = process.argv.slice(2)[0];
 
-    await prisma.users.create({
-        data: {
-            email: 'user@gmail.com',
-            password: password,
-            name: 'Alejandro Garnacho',
-            role: 'user'
-        }
-    })
+    if (argument == "users") {
+        const password = await bcrypt.hash('11223344', 8);
+        userData.forEach(async (element: any) => {
+            element.password = password;
+            if(element.role == "company") element.jobVacancies = { create: jobData }
+            await prisma.users.create({ data: element })
+        })
+    }
 
-    await prisma.users.create({
-        data: {
-            email: 'admin@gmail.com',
-            password: password,
-            name: 'Bruno Fernandes',
-            role: 'admin'
-        }
-    })
-
-    await prisma.users.create({
-        data: {
-            email: 'company@gmail.com',
-            password: password,
-            name: 'Facundo Pellistri',
-            role: 'company'
-        }
-    })
-
-    await prisma.users.create({
-        data: {
-            email: 'consultant@gmail.com',
-            password: password,
-            name: 'Casemiro',
-            role: 'consultant'
-        }
-    })
+    if (argument == "job") {
+        jobData.forEach(async (element: any) => {
+            await prisma.jobVacancy.create({ data: element })
+        })
+    }
 }
 
 main().then(
     async () => {
-         await prisma.$disconnect() 
+        await prisma.$disconnect()
     })
     .catch(async (e) => {
         console.error(e)
         await prisma.$disconnect()
         process.exit(1)
     }
-)
+    )

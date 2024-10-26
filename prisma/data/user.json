@@ -1,0 +1,26 @@
+[
+    {
+        "email": "user@gmail.com",
+        "name": "Alejandro Garnacho",
+        "role": "user",
+        "password": ""
+    },
+    {
+        "email": "admin@gmail.com",
+        "name": "Bruno Fernandes",
+        "role": "admin",
+        "password": ""
+    },
+    {
+        "email": "company@gmail.com",
+        "name": "Facundo Pellistri",
+        "role": "company",
+        "password": ""
+    },
+    {
+        "email": "consultant@gmail.com",
+        "name": "Casemiro",
+        "role": "consultant",
+        "password": ""
+    }
+]
