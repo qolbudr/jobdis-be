@@ -10,7 +10,7 @@ import {
 import { ModalsProvider } from "@mantine/modals";
 import { Notifications } from "@mantine/notifications";
 import { Analytics } from "@vercel/analytics/react";
-import { spaceGrotesk } from "@/styles/fonts";
+import { inter, spaceGrotesk } from "@/styles/fonts";
 import { theme } from "@/styles/theme";
 import { AppProvider } from "./provider";
 import { AuthState, GlobalProvider } from "@/context/global";
@@ -51,7 +51,7 @@ export default function RootLayout({
           content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no"
         />
       </head>
-      <body className={spaceGrotesk.className}>
+      <body className={inter.className}>
         <DirectionProvider>
           <MantineProvider theme={theme}>
             <ModalsProvider>

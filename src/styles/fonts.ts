@@ -5,4 +5,9 @@ const spaceGrotesk = Space_Grotesk({
 	display: "swap",
 });
 
-export { spaceGrotesk };
+const inter = Inter({
+	subsets: ["latin"],
+	display: "swap",
+});
+
+export { spaceGrotesk, inter };

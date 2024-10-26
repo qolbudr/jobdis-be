@@ -3,9 +3,9 @@
 import { createTheme } from "@mantine/core";
 
 export const theme = createTheme({
-	fontFamily: "Space Grotesk, sans-serif",
+	fontFamily: "Inter, sans-serif",
 	headings: {
-		fontFamily: "Space Grotesk, sans-serif",
+		fontFamily: "Inter, sans-serif",
 	},
 	colors: {
 		emerald: [
