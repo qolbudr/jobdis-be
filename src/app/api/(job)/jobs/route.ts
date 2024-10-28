@@ -15,12 +15,17 @@ export async function GET(req: NextRequest) {
         }
 
         const { searchParams } = new URL(req.url);
-        const filter = searchParams.get("filter");
+        const search = searchParams.get("search");
 
         const jobs = await prisma.jobVacancy.findMany({
             include: {
                 postedBy: true
             },
+            where: {
+                title: {
+                    contains: search ?? ''
+                }
+            }
         })
 
         return NextResponse.json(jobs)
