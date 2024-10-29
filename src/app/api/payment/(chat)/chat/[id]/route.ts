@@ -6,7 +6,7 @@ import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient();
 
-export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
+export async function PATCH(req: NextRequest, { params }: { params: { id: string } }) {
     try {
         // Apply the authentication middleware
         const authResponse = await authMiddleware(req)

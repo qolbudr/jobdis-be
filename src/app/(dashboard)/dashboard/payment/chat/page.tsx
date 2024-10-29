@@ -42,7 +42,7 @@ const UserPage = () => {
     const updatePayment = async (approve: boolean) => {
         try {
             if (approve) {
-                await apiV1({ method: ApiMethod.GET, path: '/api/payment/chat/' + selectedData?.id, query: { code: 1 } })
+                await apiV1({ method: ApiMethod.PATCH, path: '/api/payment/chat/' + selectedData?.id, query: { code: 1 } })
                 notifications.show({
                     color: 'green',
                     title: "Success",
@@ -50,7 +50,7 @@ const UserPage = () => {
                     position: 'top-center'
                 })
             } else {
-                await apiV1({ method: ApiMethod.GET, path: '/api/payment/chat/' + selectedData?.id, query: { code: 0 } })
+                await apiV1({ method: ApiMethod.PATCH, path: '/api/payment/chat/' + selectedData?.id, query: { code: 0 } })
                 notifications.show({
                     color: 'green',
                     title: "Success",
