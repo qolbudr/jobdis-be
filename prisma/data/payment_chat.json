@@ -2,9 +2,7 @@
     {
        "roomId": "abogobogahesoyam",
        "userId": 1,
-       "consultantId": 2,
-       "elapsedDuration": 0,
-       "duration": 3600,
+       "sessionId": 1,
        "paymentProof": "https://placedog.net/500",
        "paid": false
     }

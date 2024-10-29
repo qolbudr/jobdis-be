@@ -19,7 +19,7 @@ export function JobVacancyTable({ data, deleteJob, editJob, viewJob }: { data: A
                 header: "Company",
             },
             {
-                accessorKey: "work_type",
+                accessorKey: "workType",
                 header: "Work Type",
                 Cell: ({ cell }) => {
                     const status = cell.getValue<"freelance" | "fulltime" | "parttime" | "internship">();

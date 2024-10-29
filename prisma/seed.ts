@@ -2,6 +2,7 @@
 import { PrismaClient } from '@prisma/client'
 const userData: Array<any> = require('./data/user.json');
 const jobData = require('./data/job.json');
+const chatSession = require('./data/chat_session.json');
 const paymentChatData = require('./data/payment_chat.json');
 
 const prisma = new PrismaClient()
@@ -12,6 +13,7 @@ async function main() {
     await prisma.$queryRaw`TRUNCATE Users`;
     await prisma.$queryRaw`TRUNCATE JobVacancy`;
     await prisma.$queryRaw`TRUNCATE PaymentChat`;
+    await prisma.$queryRaw`TRUNCATE ChatSession`;
 
     const password = await bcrypt.hash('11223344', 8);
 
@@ -24,6 +26,11 @@ async function main() {
     for (let i = 0; i < jobData.length; i++) {
         let element = jobData[i];
         await prisma.jobVacancy.create({ data: element })
+    }
+
+    for (let i = 0; i < chatSession.length; i++) {
+        let element = chatSession[i];
+        await prisma.chatSession.create({ data: element })
     }
 
     for (let i = 0; i < paymentChatData.length; i++) {

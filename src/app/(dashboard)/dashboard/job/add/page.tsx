@@ -33,7 +33,7 @@ const JobPageAdd = () => {
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         try {
             e.preventDefault();
-            await apiV1({ method: ApiMethod.POST, path: '/api/job', body: { ...data, description: description, work_type: workType, userId: global?.user?.id } })
+            await apiV1({ method: ApiMethod.POST, path: '/api/job', body: { ...data, description: description, workType: workType, userId: global?.user?.id } })
             router.replace('/dashboard/job?status=success')
         } catch (e) {
             const exception = e as Exception;
@@ -107,7 +107,7 @@ const JobPageAdd = () => {
                                 <GridCol span={4}>
                                     <Select
                                         onChange={handleWorkType}
-                                        name="work_type"
+                                        name="workType"
                                         label="Work Type"
                                         placeholder="Pick value"
                                         data={['freelance', 'fulltime', 'parttime', 'internship']}

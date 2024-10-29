@@ -15,16 +15,16 @@ datasource db {
 }
 
 model Users {
-  id                Int           @id @default(autoincrement())
-  email             String        @unique
-  name              String?
-  password          String
-  role              Role
-  jobVacancies      JobVacancy[]
-  userInChat        PaymentChat[] @relation("UserInChat")
-  consultantInChat  PaymentChat[] @relation("ConsultantInChat")
-  createdAt         DateTime      @default(now())
-  updatedAt         DateTime      @default(now())
+  id                    Int           @id @default(autoincrement())
+  email                 String        @unique
+  name                  String?
+  password              String
+  role                  Role
+  jobVacancies          JobVacancy[]
+  userInChat            PaymentChat[] @relation("UserInChat")
+  consultantInSession   ChatSession?  @relation("ConsultantInSession")
+  createdAt             DateTime      @default(now())
+  updatedAt             DateTime      @default(now())
 }
 
 enum Role {
@@ -39,9 +39,9 @@ model JobVacancy {
   title       String
   location    String
   division    String?
-  work_type   WorkType
+  workType    WorkType
   salary      Int?
-  excerpt     String?    @db.LongText
+  excerpt     String?   @db.LongText
   description String    @db.LongText
   link        String
   postedBy    Users     @relation(fields: [userId], references: [id])
@@ -57,17 +57,30 @@ enum WorkType {
   internship
 }
 
+model ChatSession {
+  id              Int           @id @default(autoincrement())
+  consultant      Users         @relation("ConsultantInSession", fields: [consultantId], references: [id])
+  consultantId    Int           @unique
+  price           Int
+  status          ChatSessionStatus
+  payment         PaymentChat[] @relation("PaymentInChat")
+}
+
+enum ChatSessionStatus {
+  online
+  busy
+  offline
+}
+
 model PaymentChat {
-  id              Int       @id @default(autoincrement())
+  id              Int         @id @default(autoincrement())
   roomId          String
-  user            Users     @relation("UserInChat", fields: [userId], references: [id])
+  user            Users       @relation("UserInChat", fields: [userId], references: [id])
   userId          Int
-  consultant      Users     @relation("ConsultantInChat", fields: [consultantId], references: [id])
-  consultantId    Int
-  elapsedDuration Int       @default(0)
-  duration        Int       
+  session         ChatSession @relation("PaymentInChat", fields: [sessionId], references: [id])
+  sessionId       Int
   paymentProof    String
-  paid            Boolean   @default(false)      
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @default(now())
+  paid            Boolean     @default(false)      
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @default(now())
 }

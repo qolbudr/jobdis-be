@@ -1,9 +1,10 @@
 "use client";
 
-import { Anchor, Badge, Group, Paper, Space, Title } from "@mantine/core";
+import { Anchor, Badge, Group, Paper, Space, Text, Title } from "@mantine/core";
 import { MantineReactTable, type MRT_ColumnDef } from "mantine-react-table";
 import { useMemo } from "react";
 import { PaymentChat } from "@prisma/client";
+import { formatCurrencyInIDR } from "@/utils/utils";
 
 export function PaymentChatTable({ data, openModalProof }: { data: Array<PaymentChat>, openModalProof: (rowData: PaymentChat) => void }) {
     const columns = useMemo<MRT_ColumnDef<PaymentChat>[]>(
@@ -17,16 +18,17 @@ export function PaymentChatTable({ data, openModalProof }: { data: Array<Payment
                 header: "User",
             },
             {
-                accessorKey: "consultant.name",
+                accessorKey: "session.consultant.name",
                 header: "Consultant",
             },
             {
-                accessorKey: "elapsedDuration",
-                header: "Elapsed Chat",
-            },
-            {
-                accessorKey: "duration",
-                header: "Chat Duration",
+                accessorKey: "session.price",
+                header: "Price",
+                Cell: ({ cell, row, renderedCellValue }) => {
+                    return <>
+                        <Text>{formatCurrencyInIDR(renderedCellValue as number)}</Text>
+                    </>
+                },
             },
             {
                 accessorKey: "paid",

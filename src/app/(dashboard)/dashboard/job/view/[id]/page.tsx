@@ -74,7 +74,7 @@ const JobPageView = () => {
                             }
                             <Group mb={"xs"}>
                                 <IconClock size={20} />
-                                <Text>{job?.work_type}</Text>
+                                <Text>{job?.workType}</Text>
                             </Group>
                             <Group mb={"xs"}>
                                 <IconCurrencyDollar size={20} />

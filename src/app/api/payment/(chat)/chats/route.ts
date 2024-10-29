@@ -17,7 +17,7 @@ export async function GET(req: NextRequest) {
         const { searchParams } = new URL(req.url);
         const filter = searchParams.get("filter");
 
-        const payment = await prisma.paymentChat.findMany({ include: { consultant: true, user: true } });
+        const payment = await prisma.paymentChat.findMany({ include: { session: { include: { consultant: true } }, user: true } });
         return NextResponse.json(payment)
     } catch (error) {
         return NextResponse.json({ title: 'Error', message: 'Internal server error', error }, { status: 500 });
