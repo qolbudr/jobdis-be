@@ -137,7 +137,7 @@ const JobPageEdit = () => {
                                         <Select
                                             onChange={handleWorkType}
                                             name="work_type"
-                                            value={data.work_type}
+                                            value={workType}
                                             label="Work Type"
                                             placeholder="Pick value"
                                             data={['freelance', 'fulltime', 'parttime', 'internship']}
