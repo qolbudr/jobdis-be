@@ -16,8 +16,9 @@ interface Props {
 
 export function Navbar({ data }: Props) {
   const auth = useGlobal()
+  const withRole = data.filter((item) => item.role.map((roleItem) => roleItem.toString()).includes(auth?.user?.role ?? ''));
 
-  const links = data.map((item) => (
+  const links = withRole.map((item) => (
     <NavLinksGroup key={item.label} {...item} />
   ));
 

@@ -4,16 +4,20 @@ import {
   IconUser,
   IconNews,
   IconCurrencyDollar,
+  IconMessage,
 } from "@tabler/icons-react";
 import type { NavItem } from "@/types/nav-item";
+import { Role } from "@prisma/client";
 
 export const navLinks: NavItem[] = [
-  { label: "Dashboard", icon: IconDashboard, link: "/dashboard" },
-  { label: "User", icon: IconUser, link: "/dashboard/user" },
-  { label: "Job Vacancy", icon: IconNews, link: "/dashboard/job" },
+  { label: "Dashboard", icon: IconDashboard, link: "/dashboard", role: [Role.admin, Role.company, Role.consultant] },
+  { label: "User", icon: IconUser, link: "/dashboard/user", role: [Role.admin] },
+  { label: "Session", icon: IconMessage, link: "/dashboard/session", role: [Role.consultant] },
+  { label: "Job Vacancy", icon: IconNews, link: "/dashboard/job", role: [Role.company, Role.admin] },
   {
     label: "Payment",
     icon: IconCurrencyDollar,
+    role: [Role.admin],
     links: [
       {
         label: "Chat",
@@ -25,5 +29,5 @@ export const navLinks: NavItem[] = [
       },
     ],
   },
-  { label: "Career Mapping", icon: IconNews, link: "/dashboard/mapping" }
+  { label: "Career Mapping", icon: IconNews, link: "/dashboard/mapping", role: [Role.admin] }
 ];

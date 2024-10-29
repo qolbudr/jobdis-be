@@ -11,9 +11,9 @@ export async function GET(req: NextRequest) {
         if (authResponse.status !== 200) {
             return authResponse
         }
-        
-        const user = await prisma.users.findMany();
-        return NextResponse.json(user)
+
+        const payment = await prisma.chatSession.findMany({ include: { consultant: true } });
+        return NextResponse.json(payment)
     } catch (error) {
         return NextResponse.json({ title: 'Error', message: 'Internal server error', error }, { status: 500 });
     }

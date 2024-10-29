@@ -1,6 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
 import { PrismaClient } from '@prisma/client'
 import authMiddleware from '@/app/api/middlewares/authentication';
 
