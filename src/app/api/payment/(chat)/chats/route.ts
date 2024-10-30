@@ -16,23 +16,27 @@ export async function GET(req: NextRequest) {
 
         const { searchParams } = new URL(req.url);
         const consultantId = searchParams.get("consultantId");
+        const sessionId = searchParams.get("sessionId");
+        const userId = searchParams.get("userId");
 
-        const payment = await prisma.paymentChat.findMany({ 
-            include: { 
-                session: { 
-                    include: { 
-                        consultant: true 
-                    } 
-                }, 
-                user: true 
-            }, 
-            where: { 
-                session: { 
-                    consultantId: consultantId ? parseInt(consultantId!) : undefined 
-                } 
-            } 
+        const payment = await prisma.paymentChat.findMany({
+            include: {
+                session: {
+                    include: {
+                        consultant: true
+                    }
+                },
+                user: true
+            },
+            where: {
+                userId: userId ? parseInt(userId) : undefined,
+                sessionId: sessionId ? parseInt(sessionId) : undefined,
+                session: {
+                    consultantId: consultantId ? parseInt(consultantId!) : undefined
+                }
+            }
         });
-        
+
         return NextResponse.json(payment)
     } catch (error) {
         return NextResponse.json({ title: 'Error', message: 'Internal server error', error }, { status: 500 });

@@ -12,7 +12,18 @@ export async function GET(req: NextRequest) {
             return authResponse
         }
 
-        const payment = await prisma.chatSession.findMany({ include: { consultant: true } });
+        const { searchParams } = new URL(req.url);
+        const search = searchParams.get("search");
+
+        const payment = await prisma.chatSession.findMany({
+            include: { consultant: true }, where: {
+                consultant: {
+                    name: {
+                        contains: search ?? ''
+                    }
+                }
+            }
+        });
         return NextResponse.json(payment)
     } catch (error) {
         return NextResponse.json({ title: 'Error', message: 'Internal server error', error }, { status: 500 });
