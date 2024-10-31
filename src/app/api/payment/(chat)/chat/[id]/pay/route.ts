@@ -10,7 +10,6 @@ const prisma = new PrismaClient();
 
 export async function POST(req: NextRequest, { params }: { params: { id: string } }) {
     try {
-
         const authResponse = authMiddleware(req)
         if (authResponse.status !== 200) return authResponse
 

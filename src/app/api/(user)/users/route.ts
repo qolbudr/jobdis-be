@@ -6,11 +6,9 @@ const prisma = new PrismaClient();
 
 export async function GET(req: NextRequest) {
     try {
-        // Apply the authentication middleware
-        const authResponse = await authMiddleware(req)
-        if (authResponse.status !== 200) {
-            return authResponse
-        }
+        // This is a middleware that checks if the user is authenticated
+        const authResponse = authMiddleware(req)
+        if (authResponse.status !== 200) return authResponse
         
         const user = await prisma.users.findMany();
         return NextResponse.json(user)

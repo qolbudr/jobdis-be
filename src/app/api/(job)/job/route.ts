@@ -7,20 +7,19 @@ const prisma = new PrismaClient();
 export async function POST(req: NextRequest) {
     try {
         const data = await req.json();
-        // Apply the authentication middleware
-        const authResponse = await authMiddleware(req)
-        if (authResponse.status !== 200) {
-            return authResponse
-        }
 
-        const job = await prisma.jobVacancy.create({
+        // This is a middleware that checks if the user is authenticated
+        const authResponse = authMiddleware(req)
+        if (authResponse.status !== 200) return authResponse
+
+        const response = await prisma.jobVacancy.create({
             data: {
                 ...data,
                 salary: data.salary ? parseInt(data.salary) : null
             }
         });
 
-        return NextResponse.json(job)
+        return NextResponse.json(response)
     } catch (error) {
         return NextResponse.json({ title: 'Error', message: 'Internal server error', error }, { status: 500 });
     }

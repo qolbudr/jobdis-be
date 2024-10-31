@@ -6,16 +6,14 @@ const prisma = new PrismaClient();
 
 export async function GET(req: NextRequest) {
     try {
-        // Apply the authentication middleware
-        const authResponse = await authMiddleware(req)
-        if (authResponse.status !== 200) {
-            return authResponse
-        }
+        // This is a middleware that checks if the user is authenticated
+        const authResponse = authMiddleware(req)
+        if (authResponse.status !== 200) return authResponse
 
-        const { searchParams } = new URL(req.url);
-        const search = searchParams.get("search");
+        const query = new URL(req.url);
+        const search = query.searchParams.get("search");
 
-        const jobs = await prisma.jobVacancy.findMany({
+        const response = await prisma.jobVacancy.findMany({
             include: {
                 postedBy: true
             },
@@ -26,7 +24,7 @@ export async function GET(req: NextRequest) {
             }
         })
 
-        return NextResponse.json(jobs)
+        return NextResponse.json(response)
     } catch (error) {
         return NextResponse.json({ title: 'Error', message: 'Internal server error', error }, { status: 500 });
     }

@@ -7,13 +7,13 @@ const prisma = new PrismaClient();
 
 export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
     try {
+        // This is a middleware that checks if the user is authenticated
         const authResponse = authMiddleware(req)
         if (authResponse.status !== 200) return authResponse
         
-
-        const user = await prisma.chatSession.findFirst({ where: { id: parseInt(params.id) }, include: { consultant: true } })
-        return NextResponse.json(user)
+        const response = await prisma.chatSession.findFirst({ where: { id: parseInt(params.id) }, include: { consultant: true } })
+        return NextResponse.json(response)
     } catch (error) {
-        return NextResponse.json({ titile: 'Error', message: 'Internal server error', error }, { status: 500 });
+        return NextResponse.json({ title: 'Error', message: 'Internal server error', error }, { status: 500 });
     }
 }
