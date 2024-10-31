@@ -1,9 +1,9 @@
 [
     {
-       "roomId": "abogobogahesoyam",
+       "roomId": "667aa68a-a454-468f-b114-ba22e2ecd991",
        "userId": 1,
        "sessionId": 1,
-       "paymentProof": "https://placedog.net/500",
+       "paymentProof": "default.png",
        "paid": false
     }
 ]

@@ -75,7 +75,7 @@ const UserPage = () => {
     return <>
         <PageContainer title="Payment Chat">
             <Modal opened={proofModalOpen} onClose={() => setProofModalOpen(false)} title="Payment Proof" centered>
-                <Image src={selectedData?.paymentProof} width={'100%'}></Image>
+                <Image src={`${window.location.origin}/uploads/${selectedData?.paymentProof}`} width={'100%'}></Image>
                 <Grid>
                     <GridCol span={6}>
                         <Button onClick={() => updatePayment(true)} mt='xl' fullWidth={true} type="submit">Approve</Button>

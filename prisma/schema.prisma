@@ -74,7 +74,7 @@ enum ChatSessionStatus {
 
 model PaymentChat {
   id              Int         @id @default(autoincrement())
-  roomId          String
+  roomId          String      @unique
   user            Users       @relation("UserInChat", fields: [userId], references: [id])
   userId          Int
   session         ChatSession @relation("PaymentInChat", fields: [sessionId], references: [id])
