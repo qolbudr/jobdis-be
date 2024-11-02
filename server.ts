@@ -26,13 +26,15 @@ app.prepare().then(() => {
 
       // Listen for messages from this client
       socket.on('chatMessage', async (msg) => {
-        console.log(roomId);
-        io.to(roomId).emit('message', { user, msg });
-        await prisma.chat.create({ data: { roomId: roomId, userId: parseInt(user.id), message: msg } })
+        console.log(`Message from ${user?.name}: ${msg}`);
+        io.to(roomId).emit('message', { sentBy: user, message: msg, roomId: roomId });
+        if (user) await prisma.chat.create({ data: { roomId: roomId, userId: parseInt(user.id), message: msg } })
       });
 
       // Leave room on disconnect
-      socket.on('disconnect', () => {
+      socket.on('disconnect', async () => {
+        if (user && roomId && user.role == 'user') await prisma.chat.deleteMany({ where: { roomId: roomId } });
+        if (user && roomId && user.role == 'user') await prisma.paymentChat.deleteMany({ where: { roomId: roomId } });
         console.log('User disconnected:', socket.id);
       });
     });
