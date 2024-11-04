@@ -10,11 +10,12 @@ const prisma = new PrismaClient()
 const bcrypt = require('bcrypt')
 
 async function main() {
-    await prisma.$queryRaw`TRUNCATE TABLE "Users" RESTART IDENTITY CASCADE;`;
-    await prisma.$queryRaw`TRUNCATE TABLE "JobVacancy" RESTART IDENTITY CASCADE;`;
-    await prisma.$queryRaw`TRUNCATE TABLE "PaymentChat" RESTART IDENTITY CASCADE;`;
-    await prisma.$queryRaw`TRUNCATE TABLE "ChatSession" RESTART IDENTITY CASCADE;`;
-    await prisma.$queryRaw`TRUNCATE TABLE "Chat" RESTART IDENTITY CASCADE;`;
+    await prisma.$queryRaw`SET FOREIGN_KEY_CHECKS = 0`;
+    await prisma.$queryRaw`TRUNCATE Users`;
+    await prisma.$queryRaw`TRUNCATE JobVacancy`;
+    await prisma.$queryRaw`TRUNCATE PaymentChat`;
+    await prisma.$queryRaw`TRUNCATE ChatSession`;
+    await prisma.$queryRaw`TRUNCATE Chat`;
 
     const password = await bcrypt.hash('11223344', 8);
 
