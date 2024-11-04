@@ -14,8 +14,8 @@
     }
   },
   "scripts": {
-    "dev": "npx ts-node --compiler-options {\\\"module\\\":\\\"CommonJS\\\"} server.ts",
-    "start": "NODE_ENV=production npx ts-node --compiler-options {\\\"module\\\":\\\"CommonJS\\\"} server.ts",
+    "dev": "npx ts-node --compiler-options server.ts",
+    "start": "NODE_ENV=production npx ts-node server.ts",
     "build": "npx prisma migrate dev && npm run db-seed && next build",
     "lint": "biome lint",
     "format": "biome format --write .",
