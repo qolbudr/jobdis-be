@@ -16,6 +16,7 @@ export async function GET(req: NextRequest) {
         const consultantId = searchParams.get("consultantId");
         const sessionId = searchParams.get("sessionId");
         const userId = searchParams.get("userId");
+        const search = searchParams.get("search");
 
         const payment = await prisma.paymentChat.findMany({
             include: {
@@ -28,8 +29,18 @@ export async function GET(req: NextRequest) {
             },
             where: {
                 userId: userId ? parseInt(userId) : undefined,
+                user: {
+                    name: {
+                        contains: search ?? ''
+                    }
+                },
                 sessionId: sessionId ? parseInt(sessionId) : undefined,
                 session: {
+                    consultant: {
+                        name: {
+                            contains: search ?? ''
+                        }
+                    },
                     consultantId: consultantId ? parseInt(consultantId!) : undefined
                 }
             }
