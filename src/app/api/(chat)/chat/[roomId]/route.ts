@@ -22,6 +22,7 @@ export async function GET(req: NextRequest, { params }: { params: { roomId: stri
                         sentBy: true,
                     }
                 },
+                user: true,
                 session: {
                     include: {
                         consultant: true,

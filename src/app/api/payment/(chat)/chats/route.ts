@@ -25,7 +25,8 @@ export async function GET(req: NextRequest) {
                         consultant: true
                     }
                 },
-                user: true
+                user: true,
+                chats: true,
             },
             where: {
                 userId: userId ? parseInt(userId) : undefined,
@@ -36,11 +37,6 @@ export async function GET(req: NextRequest) {
                 },
                 sessionId: sessionId ? parseInt(sessionId) : undefined,
                 session: {
-                    consultant: {
-                        name: {
-                            contains: search ?? ''
-                        }
-                    },
                     consultantId: consultantId ? parseInt(consultantId!) : undefined
                 }
             }
