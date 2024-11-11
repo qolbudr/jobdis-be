@@ -37,15 +37,14 @@ export async function POST(req: NextRequest, { params }: { params: { id: string 
         const authResponse = authMiddleware(req)
         if (authResponse.status !== 200) return authResponse
 
-        let password;
-
         const data = await req.json();
 
-        if(data.password) {
-            password = await bcrypt.hash(data.password, 8);
+        if (data.password) {
+            const hash = await bcrypt.hash(data.password, 8);
+            data.password = hash
         }
 
-        const response = await prisma.users.update({ where: { id: parseInt(params.id) }, data: { ...data, password: password } })
+        const response = await prisma.users.update({ where: { id: parseInt(params.id) }, data: data })
         return NextResponse.json(response)
     } catch (error) {
         return NextResponse.json({ title: 'Error', message: 'Internal server error', error }, { status: 500 });
