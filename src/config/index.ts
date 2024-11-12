@@ -25,7 +25,7 @@ export const navLinks: NavItem[] = [
       },
       {
         label: "Mapping",
-        link: "/dashboard/form",
+        link: "/dashboard/payment/mapping",
       },
     ],
   },
