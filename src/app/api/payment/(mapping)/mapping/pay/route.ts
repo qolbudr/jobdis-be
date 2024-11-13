@@ -8,7 +8,7 @@ import jwt from 'jsonwebtoken';
 
 const prisma = new PrismaClient();
 
-export async function POST(req: NextRequest, { params }: { params: { id: string } }) {
+export async function POST(req: NextRequest) {
     try {
         const authResponse = authMiddleware(req)
         if (authResponse.status !== 200) return authResponse
