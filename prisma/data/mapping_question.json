@@ -1,0 +1,482 @@
+[
+    {
+        "first": "Spontan, Fleksibel, tidak diikat waktu",
+        "second": "Terencana dan memiliki deadline jelas",
+        "category": [
+            "P",
+            "J"
+        ]
+    },
+    {
+        "first": "Lebih memilih berkomunikasi dengan menulis",
+        "second": "Lebih memilih berkomunikasi dengan bicara",
+        "category": [
+            "I",
+            "E"
+        ]
+    },
+    {
+        "first": "Tidak menyukai hal-hal yang bersifat mendadak dan di luar perencanaan",
+        "second": "Perubahan mendadak tidak jadi masalah",
+        "category": [
+            "J",
+            "P"
+        ]
+    },
+    {
+        "first": "Obyektif",
+        "second": "Subyektif",
+        "category": [
+            "T",
+            "F"
+        ]
+    },
+    {
+        "first": "Menemukan dan mengembangkan ide dengan mendiskusikannya",
+        "second": "Menemukan dan mengembangkan ide dengan merenungkan",
+        "category": [
+            "E",
+            "I"
+        ]
+    },
+    {
+        "first": "Bergerak dari gambaran umum baru ke detail",
+        "second": "Bergerak dari detail ke gambaran umum sebagai kesimpulan akhir",
+        "category": [
+            "N",
+            "S"
+        ]
+    },
+    {
+        "first": "Berorientasi pada dunia eksternal (kegiatan, orang)",
+        "second": "Berorientasi pada dunia internal (memori, pemikiran, ide)",
+        "category": [
+            "E",
+            "I"
+        ]
+    },
+    {
+        "first": "Berbicara mengenai masalah yang dihadapi hari ini dan langkah-langkah praktis mengatasinya",
+        "second": "Berbicara mengenai visi masa depan dan konsep-konsep mengenai visi tersebut",
+        "category": [
+            "S",
+            "N"
+        ]
+    },
+    {
+        "first": "Diyakinkan dengan penjelasan yang menyentuh perasaan",
+        "second": "Diyakinkan dengan penjelasan yang masuk akal",
+        "category": [
+            "F",
+            "T"
+        ]
+    },
+    {
+        "first": "Fokus pada sedikit hobi namun mendalam",
+        "second": "Fokus pada banyak hobi secara luas dan umum",
+        "category": [
+            "I",
+            "E"
+        ]
+    },
+    {
+        "first": "Tertutup dan mandiri",
+        "second": "Sosial dan ekspresif",
+        "category": [
+            "I",
+            "E"
+        ]
+    },
+    {
+        "first": "Aturan, jadwal dan target sangat mengikat dan membebani",
+        "second": "Aturan, jadwal dan target akan sangat membantu dan memperjelas tindakan",
+        "category": [
+            "P",
+            "J"
+        ]
+    },
+    {
+        "first": "Menggunakan pengalaman sebagai pedoman",
+        "second": "Menggunakan imajinasi dan perenungan sebagai pedoman",
+        "category": [
+            "S",
+            "N"
+        ]
+    },
+    {
+        "first": "Berorientasi tugas dan job description",
+        "second": "Berorientasi pada manusia dan hubungan",
+        "category": [
+            "T",
+            "F"
+        ]
+    },
+    {
+        "first": "Pertemuan dengan orang lain dan aktivitas sosial melelahkan",
+        "second": "Bertemu orang dan aktivitas sosial membuat bersemangat",
+        "category": [
+            "I",
+            "E"
+        ]
+    },
+    {
+        "first": "SOP sangat membantu",
+        "second": "SOP sangat membosankan",
+        "category": [
+            "S",
+            "N"
+        ]
+    },
+    {
+        "first": "Mengambil keputusan berdasar logika dan aturan main",
+        "second": "Mengambil keputusan berdasar perasaan pribadi dan kondisi orang lain",
+        "category": [
+            "T",
+            "F"
+        ]
+    },
+    {
+        "first": "Bebas dan dinamis",
+        "second": "Prosedural dan tradisional",
+        "category": [
+            "N",
+            "S"
+        ]
+    },
+    {
+        "first": "Berorientasi pada hasil",
+        "second": "Berorientasi pada proses",
+        "category": [
+            "J",
+            "P"
+        ]
+    },
+    {
+        "first": "Beraktifitas sendirian di rumah menyenangkan",
+        "second": "Beraktifitas sendirian di rumah membosankan",
+        "category": [
+            "I",
+            "E"
+        ]
+    },
+    {
+        "first": "Membiarkan orang lain bertindak bebas asalkan tujuan tercapai",
+        "second": "Mengatur orang lain dengan tata tertib agar tujuan tercapai",
+        "category": [
+            "P",
+            "J"
+        ]
+    },
+    {
+        "first": "Memilih ide inspiratif lebih penting daripada fakta",
+        "second": "Memilih fakta lebih penting daripada ide inspiratif",
+        "category": [
+            "N",
+            "S"
+        ]
+    },
+    {
+        "first": "Mengemukakan tujuan dan sasaran lebih dahulu",
+        "second": "Mengemukakan kesepakatan terlebih dahulu",
+        "category": [
+            "T",
+            "F"
+        ]
+    },
+    {
+        "first": "Fokus pada target dan mengabaikan hal-hal baru",
+        "second": "Memperhatikan hal-hal baru dan siap menyesuaikan diri serta mengubah target",
+        "category": [
+            "J",
+            "P"
+        ]
+    },
+    {
+        "first": "Kontinuitas dan stabilitas lebih diutamakan",
+        "second": "Perubahan dan variasi lebih diutamakan",
+        "category": [
+            "S",
+            "N"
+        ]
+    },
+    {
+        "first": "Pendirian masih bisa berubah tergantung situasi nantinya",
+        "second": "Berpegang teguh pada pendirian",
+        "category": [
+            "P",
+            "J"
+        ]
+    },
+    {
+        "first": "Bertindak step by step dengan timeframe yang jelas",
+        "second": "Bertindak dengan semangat tanpa menggunakan timeframe",
+        "category": [
+            "S",
+            "N"
+        ]
+    },
+    {
+        "first": "Berinisiatif tinggi hampir dalam berbagai hal meskipun tidak berhubungan dengan dirinya",
+        "second": "Berinisiatif bila situasi memaksa atau berhubungan dengan kepentingan sendiri",
+        "category": [
+            "E",
+            "I"
+        ]
+    },
+    {
+        "first": "Lebih memilih tempat yang tenang dan pribadi untuk berkonsentrasi",
+        "second": "Lebih memilih tempat yang ramai dan banyak interaksi / aktifitas",
+        "category": [
+            "I",
+            "E"
+        ]
+    },
+    {
+        "first": "Menganalisa",
+        "second": "Berempati",
+        "category": [
+            "T",
+            "F"
+        ]
+    },
+    {
+        "first": "Berpikir secara matang sebelum bertindak",
+        "second": "Berani bertindak tanpa terlalu lama berfikir",
+        "category": [
+            "I",
+            "E"
+        ]
+    },
+    {
+        "first": "Menghargai seseorang karena sifat dan perilakunya",
+        "second": "Menghargai seseorang karena skill dan faktor teknis",
+        "category": [
+            "F",
+            "T"
+        ]
+    },
+    {
+        "first": "Merasa nyaman bila situasi tetap terbuka terhadap pilihan-pilihan lain",
+        "second": "Merasa tenang bila semua sudah diputuskan",
+        "category": [
+            "P",
+            "J"
+        ]
+    },
+    {
+        "first": "Menarik kesimpulan dengan lama dan hati-hati",
+        "second": "menarik kesimpulan dengan cepat sesuai naluri",
+        "category": [
+            "S",
+            "N"
+        ]
+    },
+    {
+        "first": "Mengekspresikan semangat",
+        "second": "Menyimpan semangat dalam hati",
+        "category": [
+            "E",
+            "I"
+        ]
+    },
+    {
+        "first": "Mengklarifikasi ide dan teori sebelum dipraktekkan",
+        "second": "Memahami ide dan teori saat mempraktekkannya langsung",
+        "category": [
+            "S",
+            "N"
+        ]
+    },
+    {
+        "first": "Melibatkan perasaan itu tidak profesional",
+        "second": "Terlalu kaku pada peraturan dan pekerjaan itu kejam",
+        "category": [
+            "T",
+            "F"
+        ]
+    },
+    {
+        "first": "Mencari kesempatan untuk berkomunikasi secara perorangan",
+        "second": "Memilih berkomunikasi pada sekelompok orang",
+        "category": [
+            "I",
+            "E"
+        ]
+    },
+    {
+        "first": "Yang penting situasi harmonis terjaga",
+        "second": "Yang penting tujuan tercapai",
+        "category": [
+            "F",
+            "T"
+        ]
+    },
+    {
+        "first": "Ketidakpastian itu seru, menegangkan dan membuat hati lebih senang",
+        "second": "Ketidakpastian membuat bingung dan meresahkan",
+        "category": [
+            "P",
+            "J"
+        ]
+    },
+    {
+        "first": "Berfokus pada masa kini (apa yang bisa diperbaiki sekarang)",
+        "second": "Berfokus pada masa depan (apa yang mungkin dicapai di masa depan)",
+        "category": [
+            "S",
+            "N"
+        ]
+    },
+    {
+        "first": "Mempertanyakan",
+        "second": "Mengakomodasi",
+        "category": [
+            "T",
+            "F"
+        ]
+    },
+    {
+        "first": "Secara konsisten mengamati dan mengingat detail",
+        "second": "Mengamati dan mengingat detail hanya bila berhubungan dengan pola",
+        "category": [
+            "S",
+            "N"
+        ]
+    },
+    {
+        "first": "Situasi last minute membuat bersemangat dan memunculkan potensi",
+        "second": "Situasi last minute sangat menyiksa, membuat stress dan merupakan kesalahan",
+        "category": [
+            "P",
+            "J"
+        ]
+    },
+    {
+        "first": "Lebih suka komunikasi tidak langsung (telp, surat, e-mail)",
+        "second": "Lebih suka komunikasi langsung (tatap muka)",
+        "category": [
+            "I",
+            "E"
+        ]
+    },
+    {
+        "first": "Praktis",
+        "second": "Konseptual",
+        "category": [
+            "S",
+            "N"
+        ]
+    },
+    {
+        "first": "Perubahan adalah musuh",
+        "second": "Perubahan adalah semangat hidup",
+        "category": [
+            "J",
+            "P"
+        ]
+    },
+    {
+        "first": "Sering dianggap keras kepala",
+        "second": "Sering dianggap terlalu memihak",
+        "category": [
+            "T",
+            "F"
+        ]
+    },
+    {
+        "first": "Bersemangat saat menolong orang keluar dari kesalahan dan meluruskan",
+        "second": "Bersemangat saat mengkritik dan menemukan kesalahan",
+        "category": [
+            "F",
+            "T"
+        ]
+    },
+    {
+        "first": "Bertindak sesuai situasi dan kondisi yang terjadi saat itu",
+        "second": "Bertindak sesuai apa yang sudah direncanakan",
+        "category": [
+            "P",
+            "J"
+        ]
+    },
+    {
+        "first": "Menggunakan keterampilan yang sudah dikuasai",
+        "second": "Menyukai tantangan untuk menguasai keterampilan baru",
+        "category": [
+            "S",
+            "N"
+        ]
+    },
+    {
+        "first": "Membangun ide pada saat berbicara",
+        "second": "Membangun ide dengan matang baru membicarakannya",
+        "category": [
+            "E",
+            "I"
+        ]
+    },
+    {
+        "first": "Memilih cara yang sudah ada dan sudah terbukti",
+        "second": "Memilih cara yang unik dan belum dipraktekkan orang lain",
+        "category": [
+            "S",
+            "N"
+        ]
+    },
+    {
+        "first": "Hidup harus sudah diatur dari awal",
+        "second": "Hidup seharusnya mengalir sesuai kondisi",
+        "category": [
+            "J",
+            "P"
+        ]
+    },
+    {
+        "first": "Standar harus ditegakkan di atas segalanya (itu menunjukkan kehormatan dan harga diri)",
+        "second": "Perasaan manusia lebih penting dari sekadar standar (yang adalah benda mati)",
+        "category": [
+            "T",
+            "F"
+        ]
+    },
+    {
+        "first": "Daftar dan checklist adalah panduan penting",
+        "second": "Daftar dan checklist adalah tugas dan beban",
+        "category": [
+            "J",
+            "P"
+        ]
+    },
+    {
+        "first": "Menuntut perlakuan yang adil dan sama pada semua orang",
+        "second": "Menuntut perlakuan khusus sesuai karakteristik masing-masing orang",
+        "category": [
+            "T",
+            "F"
+        ]
+    },
+    {
+        "first": "Mementingkan sebab-akibat",
+        "second": "Mementingkan nilai-nilai personal",
+        "category": [
+            "T",
+            "F"
+        ]
+    },
+    {
+        "first": "Puas ketika mampu beradaptasi dengan momentum yang terjadi",
+        "second": "Puas ketika mampu menjalankan semuanya sesuai rencana",
+        "category": [
+            "P",
+            "J"
+        ]
+    },
+    {
+        "first": "Spontan, Easy Going, fleksibel",
+        "second": "Berhati-hati, penuh pertimbangan, kaku",
+        "category": [
+            "E",
+            "I"
+        ]
+    }
+]

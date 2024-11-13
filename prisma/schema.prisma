@@ -106,3 +106,10 @@ model PaymentMapping {
   createdAt       DateTime    @default(now())
   updatedAt       DateTime    @default(now())
 }
+
+model MappingQuestion {
+  id                Int               @id @default(autoincrement())
+  first             String
+  second            String
+  category          Json  
+}
