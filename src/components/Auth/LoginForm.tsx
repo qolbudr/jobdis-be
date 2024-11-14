@@ -40,10 +40,13 @@ export function LoginForm() {
     try {
       e.preventDefault();
       await auth?.login({ email: state?.email ?? '', password: state?.password ?? '' });
-      router.replace('/dashboard');
+      
+      if (auth?.user?.role == "admin") router.replace('/dashboard/user');
+      if (auth?.user?.role == "consultant") router.replace('/dashboard/session');
+      if (auth?.user?.role == "company") router.replace('/dashboard/job');
     } catch (e) {
       const exception = e as Exception;
-      
+
       notifications.show({
         color: 'red',
         title: exception.title,

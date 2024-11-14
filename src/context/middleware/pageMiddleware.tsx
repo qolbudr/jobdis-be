@@ -19,7 +19,9 @@ export const ForceSignedIn = ({ children }: { children: ReactNode }): JSX.Elemen
     const auth = useGlobal()
 
     if (auth?.user != null) {
-        location.href = '/dashboard';
+        if(auth?.user?.role == "admin") location.href = '/dashboard/user';
+        if(auth?.user?.role == "consultant") location.href = '/dashboard/session';
+        if(auth?.user?.role == "company") location.href = '/dashboard/job';
         return <LoaderPage />;
     }
 
