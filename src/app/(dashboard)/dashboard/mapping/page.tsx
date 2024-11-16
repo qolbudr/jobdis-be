@@ -1,27 +1,26 @@
 'use client'
 
 import { PageContainer } from "@/components/PageContainer/PageContainer";
+import { InterestTable } from "@/components/Table/InterestTable";
 import { QuestionTable } from "@/components/Table/QuestionTable";
-import { UsersTable } from "@/components/Table/UsersTable";
 import { Exception } from "@/types/exception";
-import { User } from "@/types/user";
 import { ApiMethod, apiV1 } from "@/utils/api";
-import { mbtiMapping } from "@/utils/utils";
-import { Anchor, Breadcrumbs, Button, Card, ComboboxItem, Grid, GridCol, Group, Modal, PasswordInput, Radio, Select, Text, Textarea, TextInput } from "@mantine/core";
-import { useDisclosure } from "@mantine/hooks";
-import { modals } from "@mantine/modals";
+import { Anchor, Breadcrumbs, Button, Grid, GridCol, Group, Modal, Radio, Text, Textarea } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
-import { MappingQuestion } from "@prisma/client";
+import { InterestTest, MappingQuestion } from "@prisma/client";
 import { JsonArray } from "@prisma/client/runtime/library";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 
 const MappingPage = () => {
   const [data, setData] = useState<Array<MappingQuestion>>([]);
+  const [interest, setInterest] = useState<Array<InterestTest>>([]);
   const [questionDetail, setQuestion] = useState<MappingQuestion | undefined>();
+  const [interestDetail, setInterestDetail] = useState<InterestTest | undefined>();
   const [selectedId, setId] = useState<string | undefined>();
-  const [addModalOpen, openAddModal] = useState(false);
   const [confirmDeleteOpen, openConfirmDelete] = useState(false);
+  const [confirmDeleteInterestOpen, openConfirmDeleteInterest] = useState(false);
   const [editModalOpen, openEditModal] = useState(false);
+  const [editModalInterestOpen, openEditModalInterest] = useState(false);
 
   useEffect(() => {
     getData();
@@ -30,7 +29,9 @@ const MappingPage = () => {
   const getData = async () => {
     try {
       const mapping = await apiV1<Array<MappingQuestion>>({ path: '/api/mappings', method: ApiMethod.GET });
+      const interest = await apiV1<Array<InterestTest>>({ path: '/api/interests', method: ApiMethod.GET });
       setData(mapping!);
+      setInterest(interest!);
     } catch (e) {
       const exception = e as Exception;
 
@@ -50,10 +51,21 @@ const MappingPage = () => {
     setQuestion({ ...questionDetail!, [name]: value })
   }
 
+  const handleChangeInterest = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const name = e.target.name;
+    const value = e.target.value;
+
+    setInterestDetail({ ...interestDetail!, [name]: value })
+  }
+
   const handleRadio = (value: string, index: number) => {
     let category = questionDetail?.category as JsonArray;
     category[index] = value;
     setQuestion({ ...questionDetail!, category: category })
+  }
+
+  const handleRadioInterest = (value: string) => {
+    setInterestDetail({ ...interestDetail!, category: value })
   }
 
   const handleSubmitEdit = async (e: FormEvent<HTMLFormElement>) => {
@@ -79,9 +91,37 @@ const MappingPage = () => {
     }
   }
 
+  const handleSubmitEditInterest = async (e: FormEvent<HTMLFormElement>) => {
+    try {
+      e.preventDefault();
+      await apiV1<InterestTest>({ path: `/api/interest/${interestDetail?.id}`, method: ApiMethod.POST, body: interestDetail });
+      openEditModalInterest(false);
+      getData();
+      notifications.show({
+        color: 'green',
+        title: "Success",
+        message: "Interest Question has been updated",
+        position: 'top-center'
+      })
+    } catch (e) {
+      const exception = e as Exception;
+      notifications.show({
+        color: 'red',
+        title: exception.title,
+        message: JSON.stringify(exception.error) ?? exception.message,
+        position: 'top-center'
+      })
+    }
+  }
+
   const actionDelete = (id: number) => {
     setId(id.toString());
     openConfirmDelete(true)
+  }
+
+  const actionDeleteInterest = (id: number) => {
+    setId(id.toString());
+    openConfirmDeleteInterest(true)
   }
 
   const deleteQuestion = async () => {
@@ -106,12 +146,51 @@ const MappingPage = () => {
     }
   }
 
+  const deleteQuestionInterest = async () => {
+    try {
+      const user = await apiV1<InterestTest>({ path: `/api/interest/${selectedId}`, method: ApiMethod.DELETE });
+      openConfirmDeleteInterest(false)
+      getData();
+      notifications.show({
+        color: 'green',
+        title: "Success",
+        message: "Interest Question has been deleted",
+        position: 'top-center'
+      })
+    } catch (e) {
+      const exception = e as Exception;
+      notifications.show({
+        color: 'red',
+        title: exception.title,
+        message: JSON.stringify(exception.error) ?? exception.message,
+        position: 'top-center'
+      })
+    }
+  }
+  
   const actionEdit = async (id: number) => {
     try {
       setId(id.toString());
       const response = await apiV1<MappingQuestion>({ method: ApiMethod.GET, path: `/api/mapping/${id}` });
       setQuestion(response);
       openEditModal(true)
+    } catch (e) {
+      const exception = e as Exception;
+      notifications.show({
+        color: 'red',
+        title: exception.title,
+        message: JSON.stringify(exception.error) ?? exception.message,
+        position: 'top-center'
+      })
+    }
+  }
+
+  const actionEditData = async (id: number) => {
+    try {
+      setId(id.toString());
+      const response = await apiV1<InterestTest>({ method: ApiMethod.GET, path: `/api/interest/${id}` });
+      setInterestDetail(response);
+      openEditModalInterest(true)
     } catch (e) {
       const exception = e as Exception;
       notifications.show({
@@ -159,11 +238,39 @@ const MappingPage = () => {
         </form>
       </Modal>
 
+      <Modal opened={editModalInterestOpen} onClose={() => openEditModalInterest(false)} size='lg' title="Edit Interest Question" centered>
+        <form onSubmit={handleSubmitEditInterest}>
+          <Textarea name="statement" onChange={handleChangeInterest} placeholder="Statement" label="Statement" value={interestDetail?.statement} required></Textarea>
+          {
+            interestDetail ?
+              <Group my="md">
+                <Radio onClick={() => handleRadioInterest("Linguistic")} value="Linguistic" label="Linguistic" checked={interestDetail?.category == "Linguistic"} />
+                <Radio onClick={() => handleRadioInterest("Logical-Mathematical")} value="Logical-Mathematical" label="Logical-Mathematical" checked={interestDetail?.category == "Logical-Mathematical"} />
+                <Radio onClick={() => handleRadioInterest("Visual-Spatial")} value="Visual-Spatial" label="Visual-Spatial" checked={interestDetail?.category == "Visual-Spatial"} />
+                <Radio onClick={() => handleRadioInterest("Kinesthetic")} value="Kinesthetic" label="Kinesthetic" checked={interestDetail?.category == "Kinesthetic"} />
+                <Radio onClick={() => handleRadioInterest("Musical")} value="Musical" label="Musical" checked={interestDetail?.category == "Musical"} />
+                <Radio onClick={() => handleRadioInterest("Interpersonal")} value="Interpersonal" label="Interpersonal" checked={interestDetail?.category == "Interpersonal"} />
+                <Radio onClick={() => handleRadioInterest("Intrapersonal")} value="Intrapersonal" label="Intrapersonal" checked={interestDetail?.category == "Intrapersonal"} />
+                <Radio onClick={() => handleRadioInterest("Naturalistic")} value="Naturalistic" label="Naturalistic" checked={interestDetail?.category == "Naturalistic"} />
+              </Group> : <></>
+          }
+          <Button mt='xl' fullWidth={true} type="submit">Save</Button>
+        </form>
+      </Modal>
+
       <Modal opened={confirmDeleteOpen} onClose={() => openConfirmDelete(false)} title="Delete User" centered>
         <Text>Are you sure wanna delete this question?</Text>
         <Group mt="xl" justify="right">
           <Button color="red" onClick={() => deleteQuestion()}>Delete</Button>
           <Button variant="outline" onClick={() => openConfirmDelete(false)} type="submit">Cancel</Button>
+        </Group>
+      </Modal>
+
+      <Modal opened={confirmDeleteInterestOpen} onClose={() => openConfirmDeleteInterest(false)} title="Delete User" centered>
+        <Text>Are you sure wanna delete this interest question?</Text>
+        <Group mt="xl" justify="right">
+          <Button color="red" onClick={() => deleteQuestionInterest()}>Delete</Button>
+          <Button variant="outline" onClick={() => openConfirmDeleteInterest(false)} type="submit">Cancel</Button>
         </Group>
       </Modal>
 
@@ -178,13 +285,11 @@ const MappingPage = () => {
             </Anchor>
           </Breadcrumbs>
         </GridCol>
-        {/* <GridCol className="text-right" span={12}>
-          <Group>
-            <Button onClick={() => openAddModal(true)}>Add Question</Button>
-          </Group>
-        </GridCol> */}
         <GridCol span={12}>
           <QuestionTable data={data} deleteQuestion={actionDelete} editQuestion={actionEdit} />
+        </GridCol>
+        <GridCol span={12}>
+          <InterestTable data={interest} deleteData={actionDeleteInterest} editData={actionEditData} />
         </GridCol>
       </Grid>
     </PageContainer>

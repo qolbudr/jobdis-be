@@ -113,3 +113,9 @@ model MappingQuestion {
   second            String
   category          Json  
 }
+
+model InterestTest {
+  id                Int               @id @default(autoincrement())
+  statement         String
+  category          String
+}
