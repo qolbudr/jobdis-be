@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import authMiddleware from '@/app/api/middlewares/authentication';
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 import { PrismaClient } from '@prisma/client'
-import jwt from 'jsonwebtoken';
+import { v4 as uuid } from 'uuid';
 
 const prisma = new PrismaClient();
 
@@ -16,31 +18,20 @@ export async function GET(req: NextRequest) {
         const userId = decoded.id;
 
         const query = new URL(req.url);
-        const search = query.searchParams.get("search");
+        const sessionId = query.searchParams.get("sessionId");
 
-        const response = await prisma.chatSession.findMany({
-            include: {
-                consultant: true,
-                payment: {
-                    include: {
-                        chats: true,
-                    }
-                }
-            }, where: {
-                consultant: {
-                    name: {
-                        contains: search ?? ''
-                    },
-                },
-                payment: {
-                    every: {
-                        userId: userId
-                    }
-                }
+        const roomId = uuid();
+
+        const paymentChat = await prisma.paymentChat.create({
+            data: {
+                roomId: roomId,
+                sessionId: parseInt(sessionId ?? ''),
+                paid: false,
+                userId: userId
             }
         });
 
-        return NextResponse.json(response)
+        return NextResponse.json(paymentChat)
     } catch (error) {
         return NextResponse.json({ title: 'Error', message: 'Internal server error', error }, { status: 500 });
     }

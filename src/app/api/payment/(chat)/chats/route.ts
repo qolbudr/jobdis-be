@@ -35,6 +35,9 @@ export async function GET(req: NextRequest) {
                         contains: search ?? ''
                     }
                 },
+                paymentProof: {
+                    not: null
+                },
                 sessionId: sessionId ? parseInt(sessionId) : undefined,
                 session: {
                     consultantId: consultantId ? parseInt(consultantId!) : undefined

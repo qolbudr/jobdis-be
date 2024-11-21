@@ -45,8 +45,8 @@ app.prepare().then(() => {
 
       // Leave room on disconnect
       socket.on('disconnect', async () => {
-        if (user && roomId && user.role == 'user') await prisma.chat.deleteMany({ where: { roomId: roomId } });
-        if (user && roomId && user.role == 'user') await prisma.paymentChat.deleteMany({ where: { roomId: roomId } });
+        // if (user && roomId && user.role == 'user') await prisma.chat.deleteMany({ where: { roomId: roomId } });
+        // if (user && roomId && user.role == 'user') await prisma.paymentChat.deleteMany({ where: { roomId: roomId } });
         console.log('User disconnected:', socket.id);
       });
     });
