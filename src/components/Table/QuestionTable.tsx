@@ -20,7 +20,7 @@ export function QuestionTable({ data, deleteQuestion, editQuestion }: { data: Ar
                 Cell: ({ cell, row }) => {
                     const json = row.original?.category as JsonArray;
                     const key = json[0] as string;
-                    return <Text>{mbtiMapping[key]}</Text>
+                    return <>{mbtiMapping[key]}</>
                 },
             },
             {
@@ -33,7 +33,7 @@ export function QuestionTable({ data, deleteQuestion, editQuestion }: { data: Ar
                 Cell: ({ cell, row }) => {
                     const json = row.original?.category as JsonArray;
                     const key = json[1] as string;
-                    return <Text>{mbtiMapping[key]}</Text>
+                    return <>{mbtiMapping[key]}</>
                 },
             },
             {
