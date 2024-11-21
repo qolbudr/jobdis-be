@@ -81,7 +81,7 @@ model PaymentChat {
   userId          Int
   session         ChatSession @relation("PaymentInChat", fields: [sessionId], references: [id])
   sessionId       Int
-  paymentProof    String
+  paymentProof    String?
   paid            Boolean     @default(false)
   chats           Chat[]      @relation("ChatInRoom")
   createdAt       DateTime    @default(now())
