@@ -15,7 +15,7 @@ const handler = app.getRequestHandler();
 const prisma = new PrismaClient();
 
 app.prepare().then(() => {
-  
+
   const httpServer = createServer((req, res) => {
     // Handle static files manually (optional)
     const staticFilePath = path.join(__dirname, 'public', req.url || '');
@@ -41,6 +41,38 @@ app.prepare().then(() => {
         console.log(`Message from ${user?.name}: ${msg}`);
         io.to(roomId).emit('message', { sentBy: user, message: msg, roomId: roomId });
         if (user) await prisma.chat.create({ data: { roomId: roomId, userId: parseInt(user.id), message: msg } })
+
+        try {
+          const payment = await prisma.paymentChat.findFirstOrThrow({ include: { session: { include: { consultant: true } }, user: true }, where: { roomId: roomId } });
+          const data = {
+            "app_id": "2ff1a83f-5ef0-45c7-bbef-e0f3724ae38e",
+            "filters": [
+              {
+                "field": "tag",
+                "key": "topic",
+                "relation": "=",
+                "value": user.role == "user" ? "consultant-" + payment.session.consultant.name : "user-" + payment.user.name,
+              }
+            ],
+            "headings": {
+              "en": user.name,
+            },
+            "contents": {
+              "en": msg
+            }
+          }
+
+          await fetch('https://onesignal.com/api/v1/notifications', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'os_v2_app_f7y2qp266bc4po7p4dzxesxdr26qfel72xse6umtqdldo6mnz2bp3czirseqw75vtqhu7txw3phx34d27fj7ro4gyj4x7osa3ctslka'
+            },
+            body: JSON.stringify(data),
+          })
+        } catch (error) {
+          console.log(error)
+        }
       });
 
       // Leave room on disconnect
