@@ -27,7 +27,7 @@ export const GlobalProvider = ({ children }: { children: ReactNode }): JSX.Eleme
         try {
             const response = await apiV1<LoginResponse>({ url: '/api/auth/login', method: ApiMethod.POST, body: { 'email': email, 'password': password } })
 
-            if (response?.user?.role == "user") throw { title: 'Failed to login', message: 'Invalid email or password', code: 401 };
+            if (response?.user?.role == "user" || response?.user?.role == "consultant") throw { title: 'Failed to login', message: 'Invalid email or password', code: 401 };
             localStorage.setItem('user', JSON.stringify({ ...response?.user, token: response?.token }));
             setUser(response?.user);
             return response?.user;
