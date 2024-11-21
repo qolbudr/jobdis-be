@@ -51,7 +51,7 @@ app.prepare().then(() => {
                 "field": "tag",
                 "key": "topic",
                 "relation": "=",
-                "value": user.role == "user" ? "consultant-" + payment.session.consultant.name : "user-" + payment.user.name,
+                "value": user.role == "user" ? "consultant-" + payment.session.consultant.id : "user-" + payment.user.id,
               }
             ],
             "headings": {
