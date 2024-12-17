@@ -16,7 +16,7 @@ export function JobVacancyTable({ data, deleteJob, editJob, viewJob }: { data: A
             },
             {
                 accessorKey: "postedBy.name",
-                header: "Company",
+                header: "Posted By",
             },
             {
                 accessorKey: "workType",
@@ -32,10 +32,9 @@ export function JobVacancyTable({ data, deleteJob, editJob, viewJob }: { data: A
                 filterVariant: "select",
                 mantineFilterSelectProps: {
                     data: [
-                        { label: "Admin", value: "admin" },
-                        { label: "Consultant", value: "consultant" },
-                        { label: "Company", value: "company" },
-                        { label: "User", value: "user" },
+                        { label: "Freelance", value: "freelance" },
+                        { label: "Parttime", value: "parttimr" },
+                        { label: "Fulltime", value: "fulltime" },
                     ] as any,
                 },
             },

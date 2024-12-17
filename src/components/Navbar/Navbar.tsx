@@ -35,7 +35,7 @@ export function Navbar({ data }: Props) {
 
       <div className={classes.footer}>
         <UserButton
-          image={`https://api.multiavatar.com/${auth?.user?.name}.svg`}
+          image={`https://ui-avatars.com/api/?background=random&rounded=true&name=${auth?.user?.name}`}
           name={auth?.user?.name ?? ''}
           email={auth?.user?.email ?? ''}
         />
