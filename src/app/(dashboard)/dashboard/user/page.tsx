@@ -176,6 +176,7 @@ const UserPage = () => {
             placeholder="Pick value"
             data={['user', 'consultant', 'company', 'admin']}
           />
+          <TextInput mt="md" label="Password" name="password" type="text" onChange={handleChange} placeholder="*******" required />
           <Button mt='xl' fullWidth={true} type="submit">Save</Button>
         </form>
       </Modal>
