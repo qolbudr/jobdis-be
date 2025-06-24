@@ -10,6 +10,11 @@ export async function DELETE(req: NextRequest, { params }: { params: { id: strin
         // This is a middleware that checks if the user is authenticated
         const authResponse = authMiddleware(req)
         if (authResponse.status !== 200) return authResponse
+        const user = await prisma.users.findFirst({ where: { id: parseInt(params.id) } })
+
+        if(user?.role === 'consultant') {
+          await prisma.chatSession.delete({where: { consultantId: parseInt(params.id) }})
+        }
 
         const response = await prisma.users.delete({ where: { id: parseInt(params.id) } })
         return NextResponse.json(response)
