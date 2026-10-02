@@ -22,6 +22,12 @@ const CACHE_TTL_SECONDS = 60 * 60 * 24;
 const DEFAULT_LIMIT = 10;
 const MAX_LIMIT = 30;
 
+// This handler reads the `Authorization` header and hits the database, so it can
+// never be statically rendered/cached at build time. Opt out explicitly to stop
+// Next.js from attempting static generation (which throws "Dynamic server usage").
+export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
+
 export async function GET(req: NextRequest) {
   try {
     const authResponse = authMiddleware(req);

@@ -3,6 +3,10 @@ import { PrismaClient } from '@prisma/client'
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 
+// Reads the request body → never static.
+export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
+
 const prisma = new PrismaClient()
 
 export async function POST(req: Request) {

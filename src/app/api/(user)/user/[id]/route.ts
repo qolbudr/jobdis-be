@@ -6,6 +6,10 @@ import { cacheDeleteByPrefix } from '@/lib/cache';
 import { prisma } from '@/lib/prisma';
 import { extractDisabilityProfile, extractDisabilityProfileLocally } from '@/lib/ai/disability';
 
+// Reads the Authorization header → never static.
+export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
+
 /**
  * Explicit allow-list of updatable fields. The mobile app often sends the whole
  * user object it got back from GET (including read-only `id`, `createdAt`,

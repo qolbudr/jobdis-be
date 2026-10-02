@@ -5,6 +5,10 @@ import { z } from 'zod';
 import { prisma } from '@/lib/prisma';
 import { extractDisabilityProfile, extractDisabilityProfileLocally } from '@/lib/ai/disability';
 
+// Reads the request (and, for GET, the Authorization header) → never static.
+export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
+
 /**
  * Explicit allow-list of what the mobile app may send on registration.
  * This is both validation and protection against mass-assignment
