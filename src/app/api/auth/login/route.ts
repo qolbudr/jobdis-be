@@ -17,7 +17,20 @@ export async function POST(req: Request) {
 
     // Generate a JWT token
     const token = jwt.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET as string);
-    return NextResponse.json({ message: 'Login successful', user: user, token }, { status: 200 });
+
+    // Tell the app up-front whether this (job-seeker) user still has to complete
+    // their disability profile, so it can route to the form before the home
+    // screen instead of waiting for the recommendations call to 409.
+    const needsDisabilityProfile =
+      user.role === 'user' &&
+      !(user.disabilityNote && user.disabilityNote.trim()) &&
+      !user.disabilityTags;
+
+    const { password: _password, ...safeUser } = user;
+    return NextResponse.json(
+      { message: 'Login successful', user: { ...safeUser, needsDisabilityProfile }, token, needsDisabilityProfile },
+      { status: 200 },
+    );
   } catch (error) {
     return NextResponse.json({ title: 'Failed to login', message: 'Internal server error', code: 500 }, { status: 500 });
   }

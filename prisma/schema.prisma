@@ -20,6 +20,10 @@ model Users {
   name                  String?
   password              String
   role                  Role
+  // Disability complaint captured from the mobile registration form (free text).
+  disabilityNote        String?         @db.Text
+  // Normalized AI-extracted profile: { tags, constraints, summary, promptVersion }
+  disabilityTags        Json?
   jobVacancies          JobVacancy[]
   userInChat            PaymentChat[]     @relation("UserInChat")
   userinMapping         PaymentMapping?   @relation("UserInMapping")
